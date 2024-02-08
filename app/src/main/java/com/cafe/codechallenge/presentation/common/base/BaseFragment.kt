@@ -1,4 +1,4 @@
-package com.cafe.codechallenge.presentation.base
+package com.cafe.codechallenge.presentation.common.base
 
 import android.os.Bundle
 import android.view.LayoutInflater

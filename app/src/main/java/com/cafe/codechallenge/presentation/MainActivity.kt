@@ -1,4 +1,4 @@
-package com.cafe.codechallenge.presentation.ui
+package com.cafe.codechallenge.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

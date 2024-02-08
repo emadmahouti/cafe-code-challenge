@@ -1,4 +1,4 @@
-package com.cafe.codechallenge.presentation.ui
+package com.cafe.codechallenge.presentation
 
 import android.content.Context
 import android.view.View

@@ -1,4 +1,4 @@
-package com.cafe.codechallenge.presentation.base
+package com.cafe.codechallenge.presentation.common.base
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.flow
 /**
  * Created by emadmahouti on 2/8/24
  */
-class BaseViewModel: ViewModel() {
+open class BaseViewModel: ViewModel() {
     val toastLiveData = SingleLiveData<String>()
 
     inline fun <T> postValue(
