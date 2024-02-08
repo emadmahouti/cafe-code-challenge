@@ -1,6 +1,8 @@
 package com.cafe.codechallenge.util
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
+import com.pixy.codebase.common.viewgroup.items.PageState
 import okhttp3.Request
 
 /**
@@ -27,3 +29,5 @@ fun <X> elsif(b: Boolean, x1: X, x2: X): X {
         return x1
     return x2
 }
+
+typealias StateLiveData = MutableLiveData<PageState>
