@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.cafecodechallenge'
+    namespace 'com.cafe.codechallenge'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.example.cafecodechallenge"
+        applicationId "com.cafe.codechallenge"
         minSdk 22
         targetSdk 34
         versionCode 1

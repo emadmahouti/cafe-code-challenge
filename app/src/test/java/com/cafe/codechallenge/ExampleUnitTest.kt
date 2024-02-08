@@ -1,4 +1,4 @@
-package com.example.cafecodechallenge
+package com.cafe.codechallenge
 
 import org.junit.Test
 
