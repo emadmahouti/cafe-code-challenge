@@ -9,11 +9,11 @@ import com.cafe.codechallenge.data.remote.util.NetworkRunner
 /**
  * Created by emadmahouti on 2/8/24
  */
-interface MainRepository {
+interface MovieRepository {
     suspend fun getIntroData(page: Int): DataHolder<ItemsContainer<MovieResponse>>
 }
 
-class MainRepositoryImp(private val apiService: MovieApiService, private val networkRunner: NetworkRunner): MainRepository {
+class MovieRepositoryImp(private val apiService: MovieApiService, private val networkRunner: NetworkRunner): MovieRepository {
     override suspend fun getIntroData(page: Int): DataHolder<ItemsContainer<MovieResponse>> {
         return networkRunner.performCall { apiService.getIntroData(page) }
     }

@@ -11,6 +11,6 @@ import retrofit2.http.Query
  */
 interface MovieApiService {
 
-    @GET("reference/movie-upcoming-list")
+    @GET("discover/movie")
     suspend fun getIntroData(@Query("page") page: Int): Response<ItemsContainer<MovieResponse>>
 }
