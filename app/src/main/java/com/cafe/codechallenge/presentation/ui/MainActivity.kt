@@ -2,6 +2,8 @@ package com.cafe.codechallenge.presentation.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.cafe.codechallenge.util.LifecycleLogObserver
+import org.koin.ext.getFullName
 
 /**
  * Created by emadmahouti on 2/8/24
@@ -13,6 +15,8 @@ class MainActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mainActivityView = MainActivityView(this)
         setContentView(mainActivityView)
+
+        LifecycleLogObserver(lifecycle, this::class.java.simpleName)
     }
 
     override fun onDestroy() {
