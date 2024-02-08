@@ -14,6 +14,10 @@ open class CTextView(context: Context): AppCompatTextView(context) {
         setTextSizeInPx(14.dpToPx)
     }
 
+    fun center() {
+        textAlignment = TEXT_ALIGNMENT_CENTER
+    }
+
     fun setTextSizeInPx(size: Int) {
         setTextSize(TypedValue.COMPLEX_UNIT_PX, size.toFloat())
     }
