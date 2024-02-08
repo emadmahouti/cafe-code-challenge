@@ -21,3 +21,9 @@ fun Request.Builder.addOrIgnoreHeader(request: Request, name: String, value: Str
 val String.asJwt: String get(){
     return "Bearer $this"
 }
+
+fun <X> elsif(b: Boolean, x1: X, x2: X): X {
+    if (b)
+        return x1
+    return x2
+}
