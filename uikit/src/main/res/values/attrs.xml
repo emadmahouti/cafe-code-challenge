@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="click_time" type="id"/>
+    <item name="search_input_id" type="id"/>
+    <item name="main_list_id" type="id"/>
+
+</resources>
