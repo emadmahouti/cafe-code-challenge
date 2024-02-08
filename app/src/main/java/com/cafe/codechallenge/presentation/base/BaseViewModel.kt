@@ -1,12 +1,8 @@
 package com.cafe.codechallenge.presentation.base
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.cafe.codechallenge.data.remote.model.DataHolder
-import com.cafe.codechallenge.data.remote.model.doOnError
-import com.cafe.codechallenge.data.remote.model.doOnSuccess
-import com.cafe.codechallenge.data.remote.model.ifHasMessage
+import com.cafe.codechallenge.data.remote.model.*
 import com.cafe.codechallenge.util.livedata.SingleLiveData
 import com.pixy.codebase.common.viewgroup.items.PageState
 import kotlinx.coroutines.Deferred
@@ -29,6 +25,11 @@ class BaseViewModel: ViewModel() {
             emit(PageState.Fetching(false))
 
             result.doOnSuccess { value ->
+                if (value is ItemsContainer<*>) {
+                    if (value.results.isEmpty())
+                        emit(PageState.NoData)
+                }
+
                 liveData.postValue(value)
             }
 
