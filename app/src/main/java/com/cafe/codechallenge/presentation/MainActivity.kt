@@ -14,8 +14,10 @@ class MainActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mainActivityView = MainActivityView(this)
         setContentView(mainActivityView)
-
         LifecycleLogObserver(lifecycle, this::class.java.simpleName)
+
+        if(savedInstanceState == null)
+            mainActivityView?.init(supportFragmentManager)
     }
 
     override fun onDestroy() {
