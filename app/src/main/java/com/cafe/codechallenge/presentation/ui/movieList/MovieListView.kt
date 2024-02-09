@@ -7,6 +7,7 @@ import com.cafe.codechallenge.data.remote.model.ItemsContainer
 import com.cafe.codechallenge.data.remote.model.MovieResponse
 import com.cafe.codechallenge.presentation.common.share.ConcatWithLoadingAdapter
 import com.cafe.codechallenge.presentation.common.generateStaticViewId
+import com.cafe.codechallenge.presentation.common.share.RetryItemView
 import com.cafe.codechallenge.presentation.ui.movieList.items.MovieListAdapter
 import com.cafe.codechallenge.presentation.ui.movieList.items.MovieTitleView
 import com.pixy.codebase.common.CRecyclerView
@@ -65,8 +66,8 @@ class MovieListView(private val context: Context): VLinearLayout(context), UISta
         concatAdapter.showContent()
     }
 
-    override fun showRetry() {
-        concatAdapter.showRetry()
+    override fun showRetry(msg: String?) {
+        concatAdapter.showRetry(msg)
     }
 
     override fun showLoading() {

@@ -5,7 +5,7 @@ package com.pixy.codebase.common.viewgroup.items
  */
 interface UIStateInterface {
     fun showContent()
-    fun showRetry()
+    fun showRetry(msg: String?)
     fun showLoading()
     fun noData()
 }

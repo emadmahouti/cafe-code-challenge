@@ -67,7 +67,7 @@ open class ContainerLayout(context: Context) :
         content?.show()
     }
 
-    override fun showRetry() {
+    override fun showRetry(msg: String?) {
         currentState = State.RETRY
         hideAll()
         retryView.show()

@@ -33,7 +33,7 @@ class MovieListFragment: BaseFragmentVM<MovieViewModel>() {
     private fun handleState(state: PageState) {
         when(state) {
             is PageState.Failure -> {
-                movieView.showRetry()
+                movieView.showRetry(state.msg)
             }
             is PageState.Fetching -> {
                 if(state.fetch) {
@@ -42,7 +42,7 @@ class MovieListFragment: BaseFragmentVM<MovieViewModel>() {
                     movieView.showContent()
                 }
             }
-            PageState.NoData -> TODO()
+            PageState.NoData -> {}
         }
     }
 

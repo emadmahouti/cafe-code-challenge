@@ -31,4 +31,4 @@ fun <X> elsif(b: Boolean, x1: X, x2: X): X {
     return x2
 }
 
-typealias StateLiveData = SingleLiveData<PageState>
+typealias StateLiveData = MutableLiveData<PageState>

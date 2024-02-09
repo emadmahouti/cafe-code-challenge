@@ -1,5 +1,6 @@
 package com.cafe.codechallenge.presentation.common.base
 
+import android.util.Log
 import com.pixy.codebase.utils.OneArgCallback
 
 
@@ -13,7 +14,7 @@ abstract class BasePaginationAdapter<T>(private val onBindingPosition: Int = 1):
     var callback: OneArgCallback<Int> = {}
 
     override fun bind(holder: BaseViewHolder, position: Int) {
-        if(itemCount - onBindingPosition == holder.bindingAdapterPosition && page < totalPage) {
+        if(itemCount - onBindingPosition == holder.absoluteAdapterPosition && page < totalPage) {
             callback(++page)
         }
     }

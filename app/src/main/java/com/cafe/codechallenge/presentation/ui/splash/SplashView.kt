@@ -22,7 +22,7 @@ class SplashView(context: Context): ContainerLayout(context) {
     private val loadingView = CProgressView(context)
 
     init {
-        setBackgroundColor(getColor(ColorProvider.white))
+        setBackgroundColor(getColor(ColorProvider.backgroundColor))
 
         setupContent(VLinearLayout(context).apply {
             center()

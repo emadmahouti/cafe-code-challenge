@@ -41,11 +41,11 @@ sealed class StyleProvider {
         override fun button(): Style {
             return Style(
                 ShapeDrawable(
-                ColorProvider.primary,
-                ColorProvider.primary,
+                ColorProvider.darkGray,
+                ColorProvider.borderGray,
                 1.dpToPx,
-                5.dpToPx
-            ), ColorProvider.white)
+                4.dpToPx
+            ), ColorProvider.red)
         }
     }
 }

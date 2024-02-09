@@ -24,7 +24,7 @@ class MainActivityView(context: Context): FrameLayout(context) {
 
         with(fragmentView) {
             id = generateStaticViewId()
-            setBackgroundColor(getColor(ColorProvider.white))
+            setBackgroundColor(getColor(ColorProvider.backgroundColor))
         }
     }
 
