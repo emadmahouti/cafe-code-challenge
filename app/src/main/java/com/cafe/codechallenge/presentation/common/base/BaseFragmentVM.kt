@@ -1,5 +1,6 @@
 package com.cafe.codechallenge.presentation.common.base
 
+import androidx.annotation.CallSuper
 import com.pixy.codebase.utils.ToastManager
 
 /**
@@ -8,6 +9,7 @@ import com.pixy.codebase.utils.ToastManager
 abstract class BaseFragmentVM<T: BaseViewModel>: BaseFragment() {
     abstract val viewModel: T
 
+    @CallSuper
     override fun viewReady() {
         with(viewModel) {
             toastLiveData.observe(viewLifecycleOwner) { message ->

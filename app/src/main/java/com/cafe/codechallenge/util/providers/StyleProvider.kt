@@ -15,11 +15,11 @@ sealed class StyleProvider {
      */
     class SearchInput: Style(
         ShapeDrawable(
-            ColorProvider.white,
-            ColorProvider.primary,
+            ColorProvider.white.light,
+            ColorProvider.primary.light,
             1.dpToPx,
             20.dpToPx
-        ), ColorProvider.black
+        ), ColorProvider.black.light
     )
 
     /**
@@ -29,22 +29,22 @@ sealed class StyleProvider {
         override fun input(): Style {
             return Style(
                 ShapeDrawable(
-                    ColorProvider.white,
-                    ColorProvider.primary,
+                    ColorProvider.white.light,
+                    ColorProvider.primary.light,
                     1.dpToPx,
                     5.dpToPx
-                ), ColorProvider.black
+                ), ColorProvider.black.light
             )
         }
 
         override fun button(): Style {
             return Style(
                 ShapeDrawable(
-                ColorProvider.primary,
-                ColorProvider.primary,
+                ColorProvider.primary.light,
+                ColorProvider.primary.light,
                 1.dpToPx,
                 5.dpToPx
-            ), ColorProvider.white)
+            ), ColorProvider.white.light)
         }
     }
 }

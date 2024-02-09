@@ -11,7 +11,7 @@ import com.pixy.codebase.utils.emptyString
  * Created by emadmahouti on 2/8/24
  */
 
-fun TextView.getTextOrNull(): String? = if(this.text.trim() == emptyString) null else this.text.toString()
+//fun TextView.getTextOrNull(): String? = if(this.text.trim() == emptyString) null else this.text.toString()
 
 //fun CImageView.set(rl: String) {
 //    this.set(rl, R.drawable.placeholder)

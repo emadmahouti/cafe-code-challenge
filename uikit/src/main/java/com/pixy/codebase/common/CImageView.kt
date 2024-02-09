@@ -36,20 +36,31 @@ open class CImageView(context: Context): AppCompatImageView(context) {
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        if(ratio != null) {
-            val nonNullRatio: Float = ratio!!
+        if(ratio != null)
+        {
+            if(widthBased)
+            {
+                val width = MeasureSpec.getSize(widthMeasureSpec)
+                val height: Int = (width * ratio!!).toInt()
 
-            if(widthBased) {
-                val height = (widthMeasureSpec * nonNullRatio).toInt()
-                super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY))
-            } else {
-                val width = (heightMeasureSpec * nonNullRatio).toInt()
-                super.onMeasure( MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY), heightMeasureSpec)
+                super.onMeasure(
+                    widthMeasureSpec,
+                    MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY)
+                )
             }
+            else
+            {
+                val height = MeasureSpec.getSize(heightMeasureSpec)
+                val width: Int = (height / ratio!!).toInt()
 
-            return
+                super.onMeasure(
+                    MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),heightMeasureSpec
+                )
+            }
         }
-
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        else
+        {
+            super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        }
     }
 }

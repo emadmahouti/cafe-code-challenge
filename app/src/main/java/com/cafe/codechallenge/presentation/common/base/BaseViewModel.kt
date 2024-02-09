@@ -25,10 +25,11 @@ open class BaseViewModel: ViewModel() {
             emit(PageState.Fetching(false))
 
             result.doOnSuccess { value ->
-                if (value is ItemsContainer<*>) {
-                    if (value.results.isEmpty())
-                        emit(PageState.NoData)
-                }
+//                if (value is ItemsContainer<*>) {
+//                    if (value.results.isEmpty())
+//                        emit(PageState.NoData)
+//                }
+                val a = value
 
                 liveData.postValue(value)
             }
