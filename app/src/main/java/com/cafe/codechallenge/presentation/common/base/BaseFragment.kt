@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavDirections
+import androidx.navigation.Navigator
 import androidx.navigation.fragment.findNavController
 import com.cafe.codechallenge.util.LifecycleLogObserver
 
@@ -31,6 +32,10 @@ abstract class BaseFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewReady()
+    }
+
+    fun navigateTo(navDirections: NavDirections, extra: Navigator.Extras) {
+        findNavController().navigate(navDirections, extra)
     }
 
     fun navigateTo(navDirections: NavDirections) {

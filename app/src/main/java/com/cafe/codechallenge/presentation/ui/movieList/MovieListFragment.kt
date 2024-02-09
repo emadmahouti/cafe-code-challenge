@@ -1,12 +1,12 @@
 package com.cafe.codechallenge.presentation.ui.movieList
 
+import android.transition.TransitionInflater
 import android.view.View
 import com.cafe.codechallenge.R
 import com.cafe.codechallenge.presentation.common.base.BaseFragmentVM
 import com.pixy.codebase.common.viewgroup.items.PageState
 import com.pixy.codebase.extensions.views
 import org.koin.androidx.navigation.koinNavGraphViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
  * Created by emadmahouti on 2/8/24
@@ -46,8 +46,18 @@ class MovieListFragment: BaseFragmentVM<MovieViewModel>() {
         }
     }
 
+    private fun setupSharedTransitionAnimation() {
+        val transition = TransitionInflater.from(requireContext()).inflateTransition(
+            android.R.transition.move
+        )
+
+        sharedElementEnterTransition = transition
+        sharedElementReturnTransition = transition
+    }
+
     override fun viewReady() {
         super.viewReady()
+        setupSharedTransitionAnimation()
 
         with(movieView) {
             paginationCallback = { currentPage ->

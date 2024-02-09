@@ -4,6 +4,7 @@ import android.content.Context
 import com.cafe.codechallenge.R
 import com.cafe.codechallenge.presentation.common.center
 import com.cafe.codechallenge.presentation.common.share.ContainerLayout
+import com.cafe.codechallenge.util.bazaarLargeLogo
 import com.cafe.codechallenge.util.providers.ColorProvider
 import com.pixy.codebase.common.CImageView
 import com.pixy.codebase.common.CProgressView
@@ -20,6 +21,8 @@ class SplashView(context: Context): ContainerLayout(context) {
 
     private val logoView = CImageView(context)
     private val loadingView = CProgressView(context)
+
+    val getLogoView: CImageView get() = logoView
 
     init {
         setBackgroundColor(getColor(ColorProvider.backgroundColor))
@@ -38,6 +41,7 @@ class SplashView(context: Context): ContainerLayout(context) {
 
         with(logoView) {
             set(R.drawable.bazaar_logo)
+            transitionName = bazaarLargeLogo
         }
     }
 }

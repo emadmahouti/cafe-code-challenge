@@ -10,6 +10,9 @@ import okhttp3.Request
  * Created by emadmahouti on 2/8/24
  */
 
+const val bazaarSmallLogo = "bazaar_small_logo"
+const val bazaarLargeLogo = "bazaar_large_logo"
+
 fun log(key: String, message: Any) {
     Log.d(key, message.toString())
 }

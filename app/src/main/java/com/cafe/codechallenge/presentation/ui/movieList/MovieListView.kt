@@ -2,32 +2,30 @@ package com.cafe.codechallenge.presentation.ui.movieList
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
 import androidx.recyclerview.widget.GridLayoutManager
+import com.cafe.codechallenge.R
 import com.cafe.codechallenge.data.remote.model.ItemsContainer
 import com.cafe.codechallenge.data.remote.model.MovieResponse
 import com.cafe.codechallenge.presentation.common.share.ConcatWithLoadingAdapter
 import com.cafe.codechallenge.presentation.common.generateStaticViewId
-import com.cafe.codechallenge.presentation.common.share.RetryItemView
 import com.cafe.codechallenge.presentation.ui.movieList.items.MovieListAdapter
-import com.cafe.codechallenge.presentation.ui.movieList.items.MovieTitleView
+import com.cafe.codechallenge.util.bazaarSmallLogo
 import com.cafe.codechallenge.util.providers.ColorProvider
-import com.pixy.codebase.common.CRecyclerView
-import com.pixy.codebase.common.viewgroup.VLinearLayout
+import com.pixy.codebase.common.*
 import com.pixy.codebase.common.viewgroup.items.UIStateInterface
 import com.pixy.codebase.extensions.getColor
 import com.pixy.codebase.providers.ParamsProvider
-import com.pixy.codebase.providers.margin
 import com.pixy.codebase.utils.OneArgCallback
 import com.pixy.codebase.utils.dpToPx
 
 /**
  * Created by emadmahouti on 2/8/24
  */
-class MovieListView(private val context: Context): VLinearLayout(context), UIStateInterface {
+class MovieListView(private val context: Context): CConstraintLayout(context), UIStateInterface {
 
-    private val titleView = MovieTitleView(context)
+    private val titleView = CImageView(context)
+    private val logoView = CImageView(context)
     private val recyclerView = CRecyclerView(context)
     private val listAdapter = MovieListAdapter()
 
@@ -40,11 +38,32 @@ class MovieListView(private val context: Context): VLinearLayout(context), UISta
 
         setWillNotDraw(false)
 
-        addView(titleView, ParamsProvider.Linear.defaultParams())
-        addView(recyclerView, ParamsProvider.Linear.availableHeightParams().margin(top = sideMargin))
+        addView(recyclerView, ParamsProvider.Constraint.availableHeightParams())
+        addView(titleView, ParamsProvider.Constraint.wrapContent())
+        addView(logoView, ParamsProvider.Constraint(38.dpToPx, 41.dpToPx))
+
+        constraint {
+            titleView.cLeft connectToParent cLeft
+            titleView.cRight connectToParent cRight
+            titleView.cBottom connect logoView.cBottom
+            titleView.cTop connect logoView.cTop
+
+            logoView.cRight connectToParent cRight margin 15.dpToPx
+            logoView.cTop connectToParent cTop margin 10.dpToPx
+
+            recyclerView.cTop connect logoView.cBottom margin sideMargin
+            recyclerView.cLeft connectToParent cLeft
+            recyclerView.cRight connectToParent cRight
+            recyclerView.cBottom connectToParent cBottom
+        }
+
+        with(logoView) {
+            set(R.drawable.bazaar_logo)
+            transitionName = bazaarSmallLogo
+        }
 
         with(titleView) {
-            setBackgroundColor(Color.TRANSPARENT)
+            set(R.drawable.discover)
         }
 
         with(recyclerView) {

@@ -1,9 +1,11 @@
 package com.cafe.codechallenge.presentation.ui.splash
 
 import android.view.View
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import com.cafe.codechallenge.R
 import com.cafe.codechallenge.presentation.common.base.BaseFragmentVM
 import com.cafe.codechallenge.presentation.ui.movieList.MovieViewModel
+import com.cafe.codechallenge.util.bazaarSmallLogo
 import com.pixy.codebase.common.viewgroup.items.PageState
 import com.pixy.codebase.extensions.views
 import org.koin.androidx.navigation.koinNavGraphViewModel
@@ -29,11 +31,16 @@ class SplashFragment: BaseFragmentVM<MovieViewModel>() {
     private fun handleState(state: PageState) {
         if(state is PageState.Fetching && !state.fetch) {
             splashView.showContent()
-            navigateTo(SplashFragmentDirections.gotoMovieList())
+            navigateToMovieList()
         }
         if(state is PageState.Failure) {
             splashView.showRetry(null)
         }
+    }
+
+    private fun navigateToMovieList() {
+        val extra = FragmentNavigatorExtras(splashView.getLogoView to bazaarSmallLogo)
+        navigateTo(SplashFragmentDirections.gotoMovieList(), extra)
     }
 
     override fun generateView(): View = splashView
