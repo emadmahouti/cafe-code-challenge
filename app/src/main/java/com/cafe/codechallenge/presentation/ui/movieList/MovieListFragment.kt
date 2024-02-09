@@ -6,6 +6,7 @@ import com.cafe.codechallenge.R
 import com.cafe.codechallenge.presentation.common.base.BaseFragmentVM
 import com.pixy.codebase.common.viewgroup.items.PageState
 import com.pixy.codebase.extensions.views
+import com.pixy.codebase.utils.ToastManager
 import org.koin.androidx.navigation.koinNavGraphViewModel
 
 /**
@@ -62,6 +63,10 @@ class MovieListFragment: BaseFragmentVM<MovieViewModel>() {
         with(movieView) {
             paginationCallback = { currentPage ->
                 viewModel.getMovies(currentPage)
+            }
+
+            itemClickListener = {_, item, _ ->
+                ToastManager(item.title).show(requireContext())
             }
         }
     }

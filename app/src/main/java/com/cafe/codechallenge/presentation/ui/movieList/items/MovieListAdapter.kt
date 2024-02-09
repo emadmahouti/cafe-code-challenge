@@ -4,6 +4,7 @@ import android.content.Context
 import com.cafe.codechallenge.data.remote.model.MovieResponse
 import com.cafe.codechallenge.presentation.common.base.BasePaginationAdapter
 import com.cafe.codechallenge.presentation.common.base.BaseViewHolder
+import com.pixy.codebase.extensions.setCClickListener
 import com.pixy.codebase.providers.ParamsProvider
 import com.pixy.codebase.utils.OneArgCallback
 
@@ -24,7 +25,7 @@ class MovieListAdapter : BasePaginationAdapter<MovieResponse>() {
         if (itemView is BannerItemView) {
             val item = getItemAt(position)
 
-//            itemView.setOnClickListener { itemClickListener?.invoke(itemView.imageView, item, holder.absoluteAdapterPosition) }
+            itemView.setCClickListener { itemClickListener?.invoke(itemView, item, holder.absoluteAdapterPosition) }
             itemView.set(item)
         }
     }

@@ -3,6 +3,7 @@ package com.cafe.codechallenge.presentation.ui.movieList
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
+import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.cafe.codechallenge.R
 import com.cafe.codechallenge.data.remote.model.ItemsContainer
@@ -17,6 +18,7 @@ import com.pixy.codebase.common.viewgroup.items.UIStateInterface
 import com.pixy.codebase.extensions.getColor
 import com.pixy.codebase.providers.ParamsProvider
 import com.pixy.codebase.utils.OneArgCallback
+import com.pixy.codebase.utils.ThreeArgsCallback
 import com.pixy.codebase.utils.dpToPx
 
 /**
@@ -28,9 +30,10 @@ class MovieListView(private val context: Context): CConstraintLayout(context), U
     private val logoView = CImageView(context)
     private val recyclerView = CRecyclerView(context)
     private val listAdapter = MovieListAdapter()
-
     private val concatAdapter = ConcatWithLoadingAdapter(listAdapter)
+
     var paginationCallback: OneArgCallback<Int> by listAdapter::paginationCallback
+    var itemClickListener: ThreeArgsCallback<View, MovieResponse, Int>? by listAdapter::itemClickListener
 
     init {
         val sideMargin = 15.dpToPx
@@ -104,6 +107,9 @@ class MovieListView(private val context: Context): CConstraintLayout(context), U
     }
 
 
+    /***
+     * Add a shine shadow behind the all the child in viewGroup
+     */
     private val shadowPaint by lazy {
         Paint().apply {
             this.style = Paint.Style.FILL
@@ -117,9 +123,7 @@ class MovieListView(private val context: Context): CConstraintLayout(context), U
         super.onDraw(canvas)
 
         val radios = 230f
-//        val cx = width + 150f
-//        val cy = height / 3f
-//
+
         val cx = width - width/2.5f
         val cy = height / 6.3f
 
