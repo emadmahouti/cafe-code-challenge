@@ -17,7 +17,7 @@ val Int.dpToPx: Int
 const val emptyString: String = ""
 
 fun getColor(context: Context, color: Color): Int {
-    return if (context.isDarkModeOn()) android.graphics.Color.parseColor(color.dark) else android.graphics.Color.parseColor(color.light)
+    return if (!context.isDarkModeOn()) android.graphics.Color.parseColor(color.dark) else android.graphics.Color.parseColor(color.light)
 }
 
 typealias SimpleCallback = () -> Unit
