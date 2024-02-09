@@ -3,6 +3,7 @@ package com.cafe.codechallenge.util.providers
 import com.pixy.codebase.providers.StyleInterface
 import com.pixy.codebase.providers.StyleProviderInterface
 import com.pixy.codebase.providers.items.ShapeDrawable
+import com.pixy.codebase.utils.Color
 import com.pixy.codebase.utils.dpToPx
 
 /**
@@ -15,11 +16,11 @@ sealed class StyleProvider {
      */
     class SearchInput: Style(
         ShapeDrawable(
-            ColorProvider.white.light,
-            ColorProvider.primary.light,
+            ColorProvider.white,
+            ColorProvider.primary,
             1.dpToPx,
             20.dpToPx
-        ), ColorProvider.black.light
+        ), ColorProvider.black
     )
 
     /**
@@ -29,25 +30,25 @@ sealed class StyleProvider {
         override fun input(): Style {
             return Style(
                 ShapeDrawable(
-                    ColorProvider.white.light,
-                    ColorProvider.primary.light,
+                    ColorProvider.white,
+                    ColorProvider.primary,
                     1.dpToPx,
                     5.dpToPx
-                ), ColorProvider.black.light
+                ), ColorProvider.black
             )
         }
 
         override fun button(): Style {
             return Style(
                 ShapeDrawable(
-                ColorProvider.primary.light,
-                ColorProvider.primary.light,
+                ColorProvider.primary,
+                ColorProvider.primary,
                 1.dpToPx,
                 5.dpToPx
-            ), ColorProvider.white.light)
+            ), ColorProvider.white)
         }
     }
 }
 
-open class Style(override val shapeDrawable: ShapeDrawable, override val textColor: Int):
+open class Style(override val shapeDrawable: ShapeDrawable, override val textColor: Color):
     StyleInterface

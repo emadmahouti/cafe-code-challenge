@@ -5,6 +5,7 @@ import android.view.View.OnClickListener
 import androidx.fragment.app.Fragment
 import com.pixy.codebase.R
 import com.pixy.codebase.providers.ViewProvider
+import com.pixy.codebase.utils.Color
 import com.pixy.codebase.utils.OneArgCallback
 import com.pixy.codebase.utils.dpToPx
 
@@ -62,6 +63,16 @@ internal fun View.staticClick(clickListener: OnClickListener) {
             clickListener.onClick(this)
     }
 }
+
+fun View.getColor(color: Color?): Int {
+    return color?.let {
+        com.pixy.codebase.utils.getColor(context, color)
+    }?: kotlin.run {
+        android.graphics.Color.TRANSPARENT
+    }
+
+}
+
 
 fun View.setCClickListener(callback: OneArgCallback<View>) {
         staticClick(callback)

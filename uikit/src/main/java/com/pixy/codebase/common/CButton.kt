@@ -2,10 +2,10 @@ package com.pixy.codebase.common
 
 import android.content.Context
 import android.view.Gravity
+import com.pixy.codebase.extensions.getColor
 import com.pixy.codebase.extensions.shape
 import com.pixy.codebase.providers.StyleInterface
 import com.pixy.codebase.utils.dpToPx
-import com.pixy.codebase.providers.StyleProviderInterface
 import com.pixy.codebase.styleProvider
 
 /**
@@ -23,10 +23,10 @@ open class CButton(context: Context): CTextView(context) {
 
     fun setStyle(style: StyleInterface) {
         val shapeDrawable = style.shapeDrawable
-        setTextColor(style.textColor)
+        setTextColor(getColor(style.textColor))
         shape(
-            shapeDrawable.backgroundColor,
-            shapeDrawable.borderColor,
+            getColor(shapeDrawable.backgroundColor),
+            getColor(shapeDrawable.borderColor),
             shapeDrawable.borderSize,
             shapeDrawable.corners
         )

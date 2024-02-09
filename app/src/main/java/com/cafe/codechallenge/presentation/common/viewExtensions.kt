@@ -1,7 +1,9 @@
 package com.cafe.codechallenge.presentation.common
 
+import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.cafe.codechallenge.util.providers.ColorProvider
 import com.pixy.codebase.common.CImageView
@@ -17,8 +19,8 @@ import com.pixy.codebase.utils.emptyString
 //    this.set(rl, R.drawable.placeholder)
 //}
 
-fun View.getColor(color: ColorProvider.Color): Int {
-    return ColorProvider.getColor(context, color)
+fun LinearLayout.center() {
+    gravity = Gravity.CENTER_VERTICAL or Gravity.CENTER_HORIZONTAL
 }
 
 /**
