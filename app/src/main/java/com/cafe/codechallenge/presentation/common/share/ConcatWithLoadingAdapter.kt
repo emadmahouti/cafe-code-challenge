@@ -13,6 +13,7 @@ import com.cafe.codechallenge.util.providers.SizeProvider
 import com.pixy.codebase.common.CProgressView
 import com.pixy.codebase.providers.ParamsProvider
 import com.pixy.codebase.providers.margin
+import com.pixy.codebase.utils.SimpleCallback
 import com.pixy.codebase.utils.getColor
 
 /**
@@ -42,14 +43,19 @@ class ConcatWithLoadingAdapter(private val adapter: BaseAdapter) {
         loadingAdapter.notifyItemChanged(this.adapter.itemCount - 1)
     }
 
-    fun showRetry(message: String?) {
+    fun showRetry(message: String?, block: SimpleCallback) {
         loadingAdapter.changeItem(LoadingModel(ViewType.RETRY, true, message))
+        loadingAdapter.itemClickListener = {
+            block.invoke()
+        }
         loadingAdapter.notifyItemChanged(this.adapter.itemCount - 1)
     }
 
     class LoadingAdapter : BaseAdapter() {
 
         private var item = arrayListOf<LoadingModel>()
+        var itemClickListener: SimpleCallback? = null
+
         fun changeItem(item: LoadingModel) {
             clear()
             this.item.add(item)
@@ -93,6 +99,9 @@ class ConcatWithLoadingAdapter(private val adapter: BaseAdapter) {
 
             if(itemView is RetryItemView && item.extra as? String != null) {
                 itemView.set(item.extra)
+                itemView.retryButtonClickListener = {
+                    itemClickListener?.invoke()
+                }
             }
         }
 

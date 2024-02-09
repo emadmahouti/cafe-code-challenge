@@ -17,6 +17,7 @@ import com.pixy.codebase.common.viewgroup.items.UIStateInterface
 import com.pixy.codebase.extensions.getColor
 import com.pixy.codebase.providers.ParamsProvider
 import com.pixy.codebase.utils.OneArgCallback
+import com.pixy.codebase.utils.SimpleCallback
 import com.pixy.codebase.utils.ThreeArgsCallback
 import com.pixy.codebase.utils.dpToPx
 
@@ -93,8 +94,8 @@ class MovieListView(private val context: Context): CConstraintLayout(context), U
         concatAdapter.showContent()
     }
 
-    override fun showRetry(msg: String?) {
-        concatAdapter.showRetry(msg)
+    override fun showRetry(msg: String?, block: SimpleCallback) {
+        concatAdapter.showRetry(msg, block)
     }
 
     override fun showLoading() {

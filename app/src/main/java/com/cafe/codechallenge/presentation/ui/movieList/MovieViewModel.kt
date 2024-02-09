@@ -31,10 +31,10 @@ class MovieViewModel(
     val stateLiveData: LiveData<PageState> = _stateLiveData
 
     init {
-        getMovies(defaultPage)
+        getMovies()
     }
 
-    fun getMovies(page: Int) {
+    fun getMovies(page: Int = defaultPage) {
         viewModelScope.launch(dispatcher) {
             postValue({repository.getMovies(page)}, _movieLiveData).catchStateIn(_stateLiveData)
         }

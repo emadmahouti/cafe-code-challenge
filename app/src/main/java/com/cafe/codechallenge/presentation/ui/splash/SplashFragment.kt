@@ -42,7 +42,9 @@ class SplashFragment: BaseFragmentVM<MovieViewModel>() {
             navigateToMovieList()
         }
         if(state is PageState.Failure) {
-            splashView.showRetry(null)
+            splashView.showRetry(null) {
+                viewModel.getMovies()
+            }
         }
     }
 

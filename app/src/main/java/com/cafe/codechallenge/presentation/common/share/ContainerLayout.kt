@@ -11,6 +11,7 @@ import com.pixy.codebase.common.viewgroup.items.UIStateInterface
 import com.pixy.codebase.extensions.hide
 import com.pixy.codebase.extensions.show
 import com.pixy.codebase.providers.ParamsProvider
+import com.pixy.codebase.utils.SimpleCallback
 
 /**
  * Created by emadmahouti on 5/12/23
@@ -67,11 +68,13 @@ open class ContainerLayout(context: Context) :
         content?.show()
     }
 
-    override fun showRetry(msg: String?) {
+    override fun showRetry(msg: String?, block: SimpleCallback) {
         currentState = State.RETRY
         hideAll()
         retryView.show()
-
+        retryView.retryClickListener = {
+            block.invoke()
+        }
     }
 
     override fun showLoading() {

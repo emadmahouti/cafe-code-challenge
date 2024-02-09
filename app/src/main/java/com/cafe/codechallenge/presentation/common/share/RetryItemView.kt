@@ -10,7 +10,9 @@ import com.pixy.codebase.common.CTextView
 import com.pixy.codebase.common.viewgroup.HLinearLayout
 import com.pixy.codebase.common.viewgroup.VLinearLayout
 import com.pixy.codebase.extensions.getColor
+import com.pixy.codebase.extensions.setCClickListener
 import com.pixy.codebase.providers.ParamsProvider
+import com.pixy.codebase.utils.SimpleCallback
 import com.pixy.codebase.utils.dpToPx
 
 /**
@@ -20,6 +22,8 @@ class RetryItemView(context: Context): HLinearLayout(context) {
 
     private val titleView = CTextView(context)
     private val retryButtonView = CButton(context)
+
+    var retryButtonClickListener: SimpleCallback? = null
 
     init {
         center()
@@ -36,6 +40,7 @@ class RetryItemView(context: Context): HLinearLayout(context) {
         with(retryButtonView) {
             text = StringProvider.tryAgain
             setPadding(SizeProvider.size4X, SizeProvider.size2X, SizeProvider.size4X, SizeProvider.size2X)
+            setCClickListener { retryButtonClickListener?.invoke() }
         }
     }
 

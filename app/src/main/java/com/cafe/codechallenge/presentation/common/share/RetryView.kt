@@ -13,8 +13,10 @@ import com.pixy.codebase.common.CImageView
 import com.pixy.codebase.common.CTextView
 import com.pixy.codebase.common.viewgroup.VLinearLayout
 import com.pixy.codebase.extensions.getColor
+import com.pixy.codebase.extensions.setCClickListener
 import com.pixy.codebase.providers.ParamsProvider
 import com.pixy.codebase.providers.margin
+import com.pixy.codebase.utils.SimpleCallback
 import com.pixy.codebase.utils.dpToPx
 
 /**
@@ -26,6 +28,8 @@ class RetryView(context: Context): VLinearLayout(context) {
     private val titleView = CTextView(context)
     private val subTitleView = CTextView(context)
     private val retryButtonView = CButton(context)
+
+    var retryClickListener: SimpleCallback? = null
 
     init {
         center()
@@ -56,6 +60,7 @@ class RetryView(context: Context): VLinearLayout(context) {
             setPadding(SizeProvider.size8X, SizeProvider.size3X, SizeProvider.size8X, SizeProvider.size3X)
             setStyle(StyleProvider.RetryButton())
             text = StringProvider.retry
+            setCClickListener { retryClickListener?.invoke() }
         }
     }
 }
