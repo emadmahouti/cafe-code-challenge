@@ -13,7 +13,7 @@ object ColorProvider {
     val darkGray = Color("#191A1F", "#191A1F")
     val red = Color("#EB5757", "#EB5757")
 
-    val shadowColor = Color("#FFFFFF","#232323")
+    val shadowColor = Color("#FFFFFF","#1a1a1a")
     val borderGray = Color("#44464E", "#44464E")
     val backgroundColor = Color("#FFFFFF", "#131313")
     val textColor = Color("#000000", "#CBC8C8")

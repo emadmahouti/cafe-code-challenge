@@ -1,8 +1,7 @@
 package com.cafe.codechallenge.presentation.ui.movieList
 
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Paint
+import android.graphics.*
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.cafe.codechallenge.R
@@ -114,20 +113,19 @@ class MovieListView(private val context: Context): CConstraintLayout(context), U
         Paint().apply {
             this.style = Paint.Style.FILL
             this.color = getColor(ColorProvider.shadowColor)
-            this.setShadowLayer(width * 3f, 0f, 0f, getColor(ColorProvider.white))
+            this.setShadowLayer(80f, 0f, 0f, getColor(ColorProvider.shadowColor))
             this.isAntiAlias = true
-            this.alpha = 50
+            this.alpha = 15
+            xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP)
         }
     }
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
+        val radios = 200.dpToPx.toFloat()
 
-        val radios = 230f
-
-        val cx = width - width/2.5f
-        val cy = height / 6.3f
+        val cx = width - width / 3f
+        val cy = height / 4.5f
 
         canvas.drawCircle(cx, cy, radios, shadowPaint)
-
     }
 }
