@@ -7,7 +7,7 @@ import com.pixy.codebase.utils.Color
  */
 object ColorProvider {
 
-    val primary = Color("#6200EE", "#6200EE")
+    val primary = Color("#4BC381", "#4BC381")
     val white = Color("#FFFFFF", "#131313")
     val black = Color("#131313", "#FFFFFF")
     val textColor = Color("#000000", "#CBC8C8")

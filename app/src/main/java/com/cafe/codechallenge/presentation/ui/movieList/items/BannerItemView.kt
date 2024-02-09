@@ -5,9 +5,11 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import com.cafe.codechallenge.R
 import com.cafe.codechallenge.data.remote.model.MovieResponse
+import com.cafe.codechallenge.util.providers.ColorProvider
 import com.pixy.codebase.common.CImageView
 import com.pixy.codebase.common.CTextView
 import com.pixy.codebase.common.viewgroup.VLinearLayout
+import com.pixy.codebase.extensions.getColor
 import com.pixy.codebase.extensions.shape
 import com.pixy.codebase.providers.ParamsProvider
 import com.pixy.codebase.providers.margin
@@ -33,6 +35,7 @@ class BannerItemView(private val context: Context): VLinearLayout(context) {
 
         with(bannerTitleView) {
             center()
+            setTextColor(getColor(ColorProvider.textColor))
             setTextSizeInPx(12.dpToPx)
         }
     }

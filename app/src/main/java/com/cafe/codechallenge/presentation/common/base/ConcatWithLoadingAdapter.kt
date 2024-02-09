@@ -3,9 +3,11 @@ package com.cafe.codechallenge.presentation.common.base
 import android.content.Context
 import android.view.View
 import androidx.recyclerview.widget.ConcatAdapter
+import com.cafe.codechallenge.util.providers.ColorProvider
 import com.pixy.codebase.common.CProgressView
 import com.pixy.codebase.common.CTextView
 import com.pixy.codebase.providers.ParamsProvider
+import com.pixy.codebase.utils.getColor
 
 /**
  * Created by emadmahouti on 2/8/24
@@ -41,6 +43,7 @@ class ConcatWithLoadingAdapter(private val adapter: BaseAdapter) {
         override fun createViewHolder(context: Context, viewType: Int): BaseViewHolder {
             return BaseViewHolder(CProgressView(context).also {
                 it.layoutParams = ParamsProvider.Linear.defaultParams()
+                it.setColor(getColor(context, ColorProvider.primary))
             })
         }
 

@@ -9,8 +9,8 @@ import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.NavHostFragment
 import com.cafe.codechallenge.R
 import com.cafe.codechallenge.presentation.common.generateStaticViewId
-import com.cafe.codechallenge.presentation.common.getColor
 import com.cafe.codechallenge.util.providers.ColorProvider
+import com.pixy.codebase.extensions.getColor
 import com.pixy.codebase.providers.ParamsProvider
 
 /**

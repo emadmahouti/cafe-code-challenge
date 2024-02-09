@@ -9,6 +9,7 @@ import com.cafe.codechallenge.presentation.common.generateStaticViewId
 import com.cafe.codechallenge.presentation.ui.movieList.items.MovieListAdapter
 import com.pixy.codebase.common.CRecyclerView
 import com.pixy.codebase.common.viewgroup.VLinearLayout
+import com.pixy.codebase.common.viewgroup.items.UIStateInterface
 import com.pixy.codebase.providers.ParamsProvider
 import com.pixy.codebase.utils.OneArgCallback
 import com.pixy.codebase.utils.dpToPx
@@ -16,12 +17,12 @@ import com.pixy.codebase.utils.dpToPx
 /**
  * Created by emadmahouti on 2/8/24
  */
-class MovieListView(private val context: Context): VLinearLayout(context) {
+class MovieListView(private val context: Context): VLinearLayout(context), UIStateInterface {
 
     private val recyclerView = CRecyclerView(context)
     private val listAdapter = MovieListAdapter()
 
-    val concatAdapter = ConcatWithLoadingAdapter(listAdapter)
+    private val concatAdapter = ConcatWithLoadingAdapter(listAdapter)
     var paginationCallback: OneArgCallback<Int> by listAdapter::paginationCallback
 
     init {
@@ -49,5 +50,21 @@ class MovieListView(private val context: Context): VLinearLayout(context) {
     fun set(items: ItemsContainer<MovieResponse>) {
         listAdapter.addItems(items.results)
         listAdapter.setPaginationData(items.total_pages, items.page)
+    }
+
+    override fun showContent() {
+        concatAdapter.showContent()
+    }
+
+    override fun showRetry() {
+        concatAdapter.showRetry()
+    }
+
+    override fun showLoading() {
+        concatAdapter.showLoading()
+    }
+
+    override fun noData() {
+        concatAdapter.showContent()
     }
 }

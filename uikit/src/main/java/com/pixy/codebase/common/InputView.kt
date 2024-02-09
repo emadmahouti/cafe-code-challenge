@@ -9,6 +9,7 @@ import android.view.inputmethod.EditorInfo
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.view.setPadding
 import androidx.core.widget.addTextChangedListener
+import com.pixy.codebase.extensions.getColor
 import com.pixy.codebase.extensions.shape
 import com.pixy.codebase.providers.StyleInterface
 import com.pixy.codebase.styleProvider
@@ -33,10 +34,10 @@ class InputView(context: Context) : AppCompatEditText(context) {
 
     fun setStyle(style: StyleInterface) {
         val shapeDrawable = style.shapeDrawable
-        setTextColor(style.textColor)
+        setTextColor(getColor(style.textColor))
         shape(
-            shapeDrawable.backgroundColor,
-            shapeDrawable.borderColor,
+            getColor(shapeDrawable.backgroundColor),
+            getColor(shapeDrawable.borderColor),
             shapeDrawable.borderSize,
             shapeDrawable.corners
         )

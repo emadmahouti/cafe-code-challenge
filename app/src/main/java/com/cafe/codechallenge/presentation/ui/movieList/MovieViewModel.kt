@@ -24,7 +24,7 @@ class MovieViewModel(
 
     private val defaultPage = 1
 
-     val _movieLiveData = StoreListLiveData<MovieResponse>()
+    private val _movieLiveData = StoreListLiveData<MovieResponse>()
     val movieLiveData: LiveData<ItemsContainer<MovieResponse>> = _movieLiveData
 
     private val _stateLiveData = StateLiveData()
