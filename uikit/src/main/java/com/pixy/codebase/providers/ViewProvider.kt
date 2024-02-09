@@ -1,5 +1,6 @@
 package com.pixy.codebase.providers
 
+import android.annotation.SuppressLint
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.DefaultLifecycleObserver
@@ -13,6 +14,7 @@ import kotlin.reflect.KProperty
 class ViewProvider<T: View>(private val useCash: Boolean, private val initialize: () -> T) {
     private var theView: T? = null
 
+    @SuppressLint("SuspiciousIndentation")
     operator fun getValue(thisRef: Any, property: KProperty<*>): T {
         val viewHolder = theView ?: ((thisRef as? Fragment)?.view) as? T
            return viewHolder ?: kotlin.run {

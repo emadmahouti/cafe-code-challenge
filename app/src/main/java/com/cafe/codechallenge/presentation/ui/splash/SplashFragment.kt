@@ -1,20 +1,28 @@
 package com.cafe.codechallenge.presentation.ui.splash
 
 import android.view.View
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
 import com.cafe.codechallenge.R
 import com.cafe.codechallenge.presentation.common.base.BaseFragmentVM
 import com.cafe.codechallenge.presentation.ui.movieList.MovieViewModel
 import com.cafe.codechallenge.util.bazaarSmallLogo
 import com.pixy.codebase.common.viewgroup.items.PageState
 import com.pixy.codebase.extensions.views
-import org.koin.androidx.navigation.koinNavGraphViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
  * Created by emadmahouti on 2/9/24
  */
 class SplashFragment: BaseFragmentVM<MovieViewModel>() {
-    override val viewModel: MovieViewModel by koinNavGraphViewModel(R.id.main_graph)
+
+    /**
+     * share viewModel in navGraph scope with koin
+     */
+    override val viewModel: MovieViewModel by viewModel(ownerProducer = {
+        findNavController().getBackStackEntry(R.id.main_graph)
+    })
 
     private val splashView: SplashView by views {
         SplashView(requireContext())

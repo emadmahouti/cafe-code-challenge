@@ -51,8 +51,6 @@ dependencies {
 
     //DI
     implementation "io.insert-koin:koin-android:3.4.0"
-    implementation "io.insert-koin:koin-androidx-navigation:3.4.0"
-
 
     //Network
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'

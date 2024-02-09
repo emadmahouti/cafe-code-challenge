@@ -17,7 +17,13 @@ import com.pixy.codebase.utils.getColor
  * Created by emadmahouti on 2/8/24
  */
 class ConcatWithLoadingAdapter(private val adapter: BaseAdapter) {
-    data class LoadingModel(val type: Int, val visibility: Boolean, val extra: Any? = null)
+    enum class ViewType(val value: Int) {
+        RETRY(-1),
+        LOADING(1),
+        NOTHING(0)
+    }
+
+    data class LoadingModel(val type: ViewType, val visibility: Boolean, val extra: Any? = null)
     private val loadingAdapter = LoadingAdapter()
 
     fun concat(): ConcatAdapter {
@@ -25,17 +31,17 @@ class ConcatWithLoadingAdapter(private val adapter: BaseAdapter) {
     }
 
     fun showLoading() {
-        loadingAdapter.changeItem(LoadingModel(1, true))
+        loadingAdapter.changeItem(LoadingModel(ViewType.LOADING, true))
         loadingAdapter.notifyItemChanged(this.adapter.itemCount)
     }
 
     fun showContent() {
-        loadingAdapter.changeItem(LoadingModel(0, false))
+        loadingAdapter.changeItem(LoadingModel(ViewType.NOTHING, false))
         loadingAdapter.notifyItemChanged(this.adapter.itemCount)
     }
 
     fun showRetry(message: String?) {
-        loadingAdapter.changeItem(LoadingModel(-1, true, message))
+        loadingAdapter.changeItem(LoadingModel(ViewType.RETRY, true, message))
         loadingAdapter.notifyItemChanged(this.adapter.itemCount)
     }
 
@@ -52,22 +58,26 @@ class ConcatWithLoadingAdapter(private val adapter: BaseAdapter) {
         }
 
         override fun getItemViewType(position: Int): Int {
-            return item.first().type
+            return item.first().type.value
         }
 
         override fun createViewHolder(context: Context, viewType: Int): BaseViewHolder {
             val itemView =
-                if(viewType == 1) {
-                    CProgressView(context).also {
-                        it.layoutParams = ParamsProvider.Linear.defaultParams()
-                        it.setColor(getColor(context, ColorProvider.primary))
+                when (viewType) {
+                    ViewType.LOADING.value -> {
+                        CProgressView(context).also {
+                            it.layoutParams = ParamsProvider.Linear.defaultParams()
+                            it.setColor(getColor(context, ColorProvider.primary))
+                        }
                     }
-                } else if(viewType == -1) {
-                    RetryItemView(context).also {
-                        it.layoutParams = ParamsProvider.Linear.defaultParams()
+                    ViewType.RETRY.value -> {
+                        RetryItemView(context).also {
+                            it.layoutParams = ParamsProvider.Linear.defaultParams()
+                        }
                     }
-                } else {
-                    View(context)
+                    else -> {
+                        View(context)
+                    }
                 }
 
             return BaseViewHolder(itemView)

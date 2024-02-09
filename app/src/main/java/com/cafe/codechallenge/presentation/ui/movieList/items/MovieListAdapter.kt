@@ -11,7 +11,7 @@ import com.pixy.codebase.utils.OneArgCallback
 /**
  * Created by emadmahouti on 2/8/24
  */
-class MovieListAdapter : BasePaginationAdapter<MovieResponse>() {
+class MovieListAdapter : BasePaginationAdapter<MovieResponse>(onBindingPosition = 3) {
     var paginationCallback: OneArgCallback<Int> by this::callback
 
     override fun createViewHolder(context: Context, viewType: Int): BaseViewHolder {

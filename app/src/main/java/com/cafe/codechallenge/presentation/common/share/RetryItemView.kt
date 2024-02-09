@@ -3,6 +3,8 @@ package com.cafe.codechallenge.presentation.common.share
 import android.content.Context
 import com.cafe.codechallenge.presentation.common.center
 import com.cafe.codechallenge.util.providers.ColorProvider
+import com.cafe.codechallenge.util.providers.SizeProvider
+import com.cafe.codechallenge.util.providers.StringProvider
 import com.pixy.codebase.common.CButton
 import com.pixy.codebase.common.CTextView
 import com.pixy.codebase.common.viewgroup.HLinearLayout
@@ -27,16 +29,15 @@ class RetryItemView(context: Context): HLinearLayout(context) {
 
         with(titleView) {
             setOneLiner()
-            setTextSizeInPx(16.dpToPx)
+            setTextSizeInPx(SizeProvider.size4X)
             setTextColor(getColor(ColorProvider.textColor))
         }
 
         with(retryButtonView) {
-            text = "Try Again"
-            setPadding(16.dpToPx, 8.dpToPx, 16.dpToPx, 8.dpToPx)
+            text = StringProvider.tryAgain
+            setPadding(SizeProvider.size4X, SizeProvider.size2X, SizeProvider.size4X, SizeProvider.size2X)
         }
     }
-
 
     fun set(text: String) {
         titleView.text = text

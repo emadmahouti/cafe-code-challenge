@@ -4,6 +4,8 @@ import android.content.Context
 import com.cafe.codechallenge.R
 import com.cafe.codechallenge.presentation.common.center
 import com.cafe.codechallenge.util.providers.ColorProvider
+import com.cafe.codechallenge.util.providers.SizeProvider
+import com.cafe.codechallenge.util.providers.StringProvider
 import com.cafe.codechallenge.util.providers.StyleProvider
 import com.pixy.codebase.common.CButton
 import com.pixy.codebase.common.CIconView
@@ -29,9 +31,9 @@ class RetryView(context: Context): VLinearLayout(context) {
         center()
 
         addView(imageView, ParamsProvider.Linear.wrapContent())
-        addView(titleView, ParamsProvider.Linear.wrapContent().margin(top = 16.dpToPx))
-        addView(subTitleView, ParamsProvider.Linear.wrapContent().margin(top = 8.dpToPx))
-        addView(retryButtonView, ParamsProvider.Linear.wrapContent().margin(top = 34.dpToPx))
+        addView(titleView, ParamsProvider.Linear.wrapContent().margin(top = SizeProvider.size4X))
+        addView(subTitleView, ParamsProvider.Linear.wrapContent().margin(top = SizeProvider.size2X))
+        addView(retryButtonView, ParamsProvider.Linear.wrapContent().margin(top = SizeProvider.size8X))
 
         with(imageView) {
             set(R.drawable.sad)
@@ -39,8 +41,7 @@ class RetryView(context: Context): VLinearLayout(context) {
 
         with(subTitleView) {
             center()
-            text = "Seems like there's an internet\n" +
-                    "connection problem."
+            text = StringProvider.poorConnection
             setTextSizeInPx(14.dpToPx)
             setTextColor(getColor(ColorProvider.subtitleColor))
         }
@@ -48,13 +49,13 @@ class RetryView(context: Context): VLinearLayout(context) {
         with(titleView) {
             setTextSizeInPx(16.dpToPx)
             setTextColor(getColor(ColorProvider.textColor))
-            text = "Connection glitch"
+            text = StringProvider.connectionGlitch
         }
 
         with(retryButtonView) {
-            setPadding(32.dpToPx, 12.dpToPx, 32.dpToPx, 12.dpToPx)
+            setPadding(SizeProvider.size8X, SizeProvider.size3X, SizeProvider.size8X, SizeProvider.size3X)
             setStyle(StyleProvider.RetryButton())
-            text = "Retry"
+            text = StringProvider.retry
         }
     }
 }
