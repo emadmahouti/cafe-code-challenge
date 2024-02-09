@@ -1,6 +1,8 @@
 package com.cafe.codechallenge.util
 
 import androidx.lifecycle.MutableLiveData
+import com.cafe.codechallenge.data.remote.model.MovieResponse
+import com.cafe.codechallenge.util.providers.ConfigProvider
 import com.pixy.codebase.common.viewgroup.items.PageState
 import kotlinx.coroutines.flow.Flow
 
@@ -14,3 +16,6 @@ suspend fun<T> Flow<T>.catchStateIn(liveData: MutableLiveData<T>): PageState {
 
     return PageState.NoData
 }
+
+val MovieResponse.image get() =
+    "${ConfigProvider().image_base_url}$poster_path"

@@ -23,7 +23,7 @@ class MainActivityView(context: Context): FrameLayout(context) {
         addView(fragmentView, ParamsProvider.Frame.fullSize())
 
         with(fragmentView) {
-            id = generateStaticViewId()
+            id = R.id.main_frame
             setBackgroundColor(getColor(ColorProvider.backgroundColor))
         }
     }

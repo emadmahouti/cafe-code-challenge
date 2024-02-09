@@ -5,6 +5,8 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import com.cafe.codechallenge.R
 import com.cafe.codechallenge.data.remote.model.MovieResponse
+import com.cafe.codechallenge.presentation.common.set
+import com.cafe.codechallenge.util.image
 import com.cafe.codechallenge.util.providers.ColorProvider
 import com.pixy.codebase.common.CImageView
 import com.pixy.codebase.common.CTextView
@@ -41,7 +43,7 @@ class BannerItemView(private val context: Context): VLinearLayout(context) {
     }
 
     fun set(item: MovieResponse) {
-        bannerImageView.set(item.poster, R.drawable.ic_launcher_foreground)
+        bannerImageView.set(item.image)
         bannerTitleView.text = item.title
     }
 }

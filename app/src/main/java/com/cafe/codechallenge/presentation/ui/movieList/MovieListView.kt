@@ -70,7 +70,7 @@ class MovieListView(private val context: Context): CConstraintLayout(context), U
         }
 
         with(recyclerView) {
-            id = generateStaticViewId()
+            id = R.id.movie_list
             setAsGrid(cellCount).spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                 override fun getSpanSize(position: Int): Int {
                     return if (position + 1 == adapter?.itemCount)

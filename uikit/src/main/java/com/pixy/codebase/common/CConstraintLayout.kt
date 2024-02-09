@@ -11,8 +11,6 @@ import androidx.constraintlayout.widget.ConstraintSet
 open class CConstraintLayout(context: Context) : ConstraintLayout(context) {
     private val constraintsList = mutableListOf<ViewConstraintMargin>()
 
-
-
     override fun onViewAdded(view: View?) {
         view?.id = generateViewId()
         super.onViewAdded(view)

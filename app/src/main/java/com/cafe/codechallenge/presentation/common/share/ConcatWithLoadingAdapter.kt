@@ -9,8 +9,10 @@ import com.cafe.codechallenge.presentation.common.base.BaseAdapter
 import com.cafe.codechallenge.presentation.common.base.BaseViewHolder
 import com.cafe.codechallenge.util.elsif
 import com.cafe.codechallenge.util.providers.ColorProvider
+import com.cafe.codechallenge.util.providers.SizeProvider
 import com.pixy.codebase.common.CProgressView
 import com.pixy.codebase.providers.ParamsProvider
+import com.pixy.codebase.providers.margin
 import com.pixy.codebase.utils.getColor
 
 /**
@@ -32,17 +34,17 @@ class ConcatWithLoadingAdapter(private val adapter: BaseAdapter) {
 
     fun showLoading() {
         loadingAdapter.changeItem(LoadingModel(ViewType.LOADING, true))
-        loadingAdapter.notifyItemChanged(this.adapter.itemCount)
+        loadingAdapter.notifyItemChanged(this.adapter.itemCount - 1)
     }
 
     fun showContent() {
         loadingAdapter.changeItem(LoadingModel(ViewType.NOTHING, false))
-        loadingAdapter.notifyItemChanged(this.adapter.itemCount)
+        loadingAdapter.notifyItemChanged(this.adapter.itemCount - 1)
     }
 
     fun showRetry(message: String?) {
         loadingAdapter.changeItem(LoadingModel(ViewType.RETRY, true, message))
-        loadingAdapter.notifyItemChanged(this.adapter.itemCount)
+        loadingAdapter.notifyItemChanged(this.adapter.itemCount - 1)
     }
 
     class LoadingAdapter : BaseAdapter() {
@@ -66,7 +68,7 @@ class ConcatWithLoadingAdapter(private val adapter: BaseAdapter) {
                 when (viewType) {
                     ViewType.LOADING.value -> {
                         CProgressView(context).also {
-                            it.layoutParams = ParamsProvider.Linear.defaultParams()
+                            it.layoutParams = ParamsProvider.Linear.defaultParams().margin(top = SizeProvider.size8X)
                             it.setColor(getColor(context, ColorProvider.primary))
                         }
                     }
