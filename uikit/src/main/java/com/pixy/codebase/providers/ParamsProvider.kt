@@ -4,6 +4,7 @@ import android.view.ViewGroup
 import android.view.ViewGroup.MarginLayoutParams
 import android.widget.FrameLayout
 import android.widget.LinearLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.pixy.codebase.utils.dpToPx
 
 /**
@@ -48,6 +49,22 @@ class ParamsProvider {
 
         }
     }
+
+    class Constraint : ConstraintLayout.LayoutParams {
+        constructor(width: Int, height: Int) : super(width, height)
+        companion object {
+
+            fun availableWidthParams() = Linear(0, WRAP)
+            fun availableHeightParams() = Linear(MATCH, 0)
+            fun defaultParams() = Constraint(MATCH, WRAP)
+            fun wrapContent() = Constraint(WRAP, WRAP)
+
+            fun get(w: Int, h: Int): Constraint {
+                return Constraint(w, h)
+            }
+        }
+    }
+
 
     class Frame : FrameLayout.LayoutParams {
         constructor(width: Int, height: Int) : super(width, height)
