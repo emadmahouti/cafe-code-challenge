@@ -3,6 +3,7 @@ package com.cafe.codechallenge.presentation.ui.splash
 import android.content.Context
 import com.cafe.codechallenge.R
 import com.cafe.codechallenge.presentation.common.center
+import com.cafe.codechallenge.presentation.common.share.ContainerLayout
 import com.cafe.codechallenge.util.providers.ColorProvider
 import com.pixy.codebase.common.CImageView
 import com.pixy.codebase.common.CProgressView
@@ -15,17 +16,21 @@ import com.pixy.codebase.utils.dpToPx
 /**
  * Created by emadmahouti on 2/9/24
  */
-class SplashView(context: Context): VLinearLayout(context) {
+class SplashView(context: Context): ContainerLayout(context) {
 
     private val logoView = CImageView(context)
     private val loadingView = CProgressView(context)
 
     init {
-        center()
         setBackgroundColor(getColor(ColorProvider.white))
 
-        addView(logoView, ParamsProvider.Linear(79.dpToPx, 88.dpToPx))
-        addView(loadingView, ParamsProvider.Linear.wrapContent().margin(top = 50.dpToPx))
+        setupContent(VLinearLayout(context).apply {
+            center()
+
+            addView(logoView, ParamsProvider.Linear(79.dpToPx, 88.dpToPx))
+            addView(loadingView, ParamsProvider.Linear.wrapContent().margin(top = 50.dpToPx))
+
+        })
 
         with(loadingView) {
             setColor(getColor(ColorProvider.primary))

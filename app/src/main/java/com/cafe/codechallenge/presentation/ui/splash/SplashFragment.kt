@@ -28,7 +28,11 @@ class SplashFragment: BaseFragmentVM<MovieViewModel>() {
 
     private fun handleState(state: PageState) {
         if(state is PageState.Fetching && state.fetch) {
+            splashView.showContent()
             navigateTo(SplashFragmentDirections.gotoMovieList())
+        }
+        if(state is PageState.Failure) {
+            splashView.showRetry()
         }
     }
 

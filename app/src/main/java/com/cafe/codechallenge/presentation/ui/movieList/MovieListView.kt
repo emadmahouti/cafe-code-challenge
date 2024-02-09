@@ -5,7 +5,7 @@ import android.graphics.Color
 import androidx.recyclerview.widget.GridLayoutManager
 import com.cafe.codechallenge.data.remote.model.ItemsContainer
 import com.cafe.codechallenge.data.remote.model.MovieResponse
-import com.cafe.codechallenge.presentation.common.base.ConcatWithLoadingAdapter
+import com.cafe.codechallenge.presentation.common.share.ConcatWithLoadingAdapter
 import com.cafe.codechallenge.presentation.common.generateStaticViewId
 import com.cafe.codechallenge.presentation.ui.movieList.items.MovieListAdapter
 import com.cafe.codechallenge.presentation.ui.movieList.items.MovieTitleView

@@ -14,13 +14,13 @@ sealed class StyleProvider {
     /**
      * application components style
      */
-    class SearchInput: Style(
+    class RetryButton: Style(
         ShapeDrawable(
-            ColorProvider.white,
-            ColorProvider.primary,
+            ColorProvider.retryButtonColor,
+            ColorProvider.retryButtonColor,
             1.dpToPx,
-            20.dpToPx
-        ), ColorProvider.black
+            24.dpToPx
+        ), ColorProvider.white
     )
 
     /**

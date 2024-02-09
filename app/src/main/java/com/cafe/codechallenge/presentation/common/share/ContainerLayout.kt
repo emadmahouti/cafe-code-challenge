@@ -1,4 +1,4 @@
-package com.pixy.codebase.common.viewgroup
+package com.cafe.codechallenge.presentation.common.share
 
 import android.content.Context
 import android.view.Gravity
@@ -7,7 +7,6 @@ import android.widget.FrameLayout
 import android.widget.ProgressBar
 import com.pixy.codebase.common.CButton
 import com.pixy.codebase.common.CTextView
-import com.pixy.codebase.common.viewgroup.items.PageState
 import com.pixy.codebase.common.viewgroup.items.UIStateInterface
 import com.pixy.codebase.extensions.hide
 import com.pixy.codebase.extensions.show
@@ -29,10 +28,8 @@ open class ContainerLayout(context: Context) :
 
     private var content: View? = null
     private var loadingView = ProgressBar(context)
-    private val retryView = CButton(context)
+    private val retryView = RetryView(context)
     private val noDataView = CTextView(context)
-
-//    var loadingConcatAdapter: ConcatWithLoadingAdapter? = null
 
     protected var currentState: State = State.CONTENT
 
@@ -59,10 +56,6 @@ open class ContainerLayout(context: Context) :
 
         with(noDataView) {
             text = "NO DATA"
-        }
-
-        with(retryView) {
-            text = "Retry"
         }
 
         showContent()

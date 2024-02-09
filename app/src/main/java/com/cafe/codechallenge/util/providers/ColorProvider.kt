@@ -11,5 +11,7 @@ object ColorProvider {
     val white = Color("#FFFFFF", "#131313")
     val black = Color("#131313", "#FFFFFF")
     val textColor = Color("#000000", "#CBC8C8")
+    val subtitleColor = Color("#7E91B7","#7E91B7")
+    val retryButtonColor = Color("#1C3051", "#1C3051")
 
 }

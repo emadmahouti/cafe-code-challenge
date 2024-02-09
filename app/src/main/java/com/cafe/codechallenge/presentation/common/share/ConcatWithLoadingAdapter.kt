@@ -1,11 +1,12 @@
-package com.cafe.codechallenge.presentation.common.base
+package com.cafe.codechallenge.presentation.common.share
 
 import android.content.Context
 import android.view.View
 import androidx.recyclerview.widget.ConcatAdapter
+import com.cafe.codechallenge.presentation.common.base.BaseAdapter
+import com.cafe.codechallenge.presentation.common.base.BaseViewHolder
 import com.cafe.codechallenge.util.providers.ColorProvider
 import com.pixy.codebase.common.CProgressView
-import com.pixy.codebase.common.CTextView
 import com.pixy.codebase.providers.ParamsProvider
 import com.pixy.codebase.utils.getColor
 
