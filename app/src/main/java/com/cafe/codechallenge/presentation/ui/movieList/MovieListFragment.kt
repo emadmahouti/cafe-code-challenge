@@ -24,7 +24,6 @@ class MovieListFragment: BaseFragmentVM<MovieViewModel>() {
         MovieListView(requireContext())
     }
 
-    private var cursor: Int? = null
     override fun observe() {
         with(viewModel) {
             movieLiveData.observe(viewLifecycleOwner) { items ->
@@ -41,9 +40,7 @@ class MovieListFragment: BaseFragmentVM<MovieViewModel>() {
         when(state) {
             is PageState.Failure -> {
                 movieView.showRetry(state.msg) {
-                    cursor?.let {nonNullCursor ->
-                        viewModel.getMovies(nonNullCursor)
-                    }
+                    viewModel.paging.load()
                 }
             }
             is PageState.Fetching -> {
@@ -73,9 +70,8 @@ class MovieListFragment: BaseFragmentVM<MovieViewModel>() {
         setupSharedTransitionAnimation()
 
         with(movieView) {
-            paginationCallback = { currentPage ->
-                viewModel.getMovies(currentPage)
-                cursor = currentPage
+            paginationCallback = { _ ->
+                viewModel.paging.load()
             }
 
             itemClickListener = {_, item, _ ->

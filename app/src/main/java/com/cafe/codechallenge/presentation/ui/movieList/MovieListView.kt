@@ -85,9 +85,8 @@ class MovieListView(private val context: Context): CConstraintLayout(context), U
         }
     }
 
-    fun set(items: ItemsContainer<MovieResponse>) {
-        listAdapter.addItems(items.results)
-        listAdapter.setPaginationData(items.total_pages, items.page)
+    fun set(items: List<MovieResponse>) {
+        listAdapter.addItems(items)
     }
 
     override fun showContent() {

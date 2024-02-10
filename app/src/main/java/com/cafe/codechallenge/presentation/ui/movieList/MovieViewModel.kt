@@ -7,9 +7,13 @@ import com.cafe.codechallenge.data.remote.model.ItemsContainer
 import com.cafe.codechallenge.data.remote.model.MovieResponse
 import com.cafe.codechallenge.data.remote.repositories.MovieRepository
 import com.cafe.codechallenge.presentation.common.base.BaseViewModel
+import com.cafe.codechallenge.presentation.common.util.Paginator
+import com.cafe.codechallenge.presentation.ui.movieList.items.MoviePaginator
+import com.cafe.codechallenge.presentation.ui.movieList.items.MoviePaginatorInterface
 import com.cafe.codechallenge.util.StateLiveData
 import com.cafe.codechallenge.util.catchStateIn
 import com.cafe.codechallenge.util.livedata.StoreListLiveData
+import com.cafe.codechallenge.util.reset
 import com.pixy.codebase.common.viewgroup.items.PageState
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -22,21 +26,21 @@ class MovieViewModel(
     private val repository: MovieRepository,
     private val dispatcher: CoroutineDispatcher): BaseViewModel() {
 
-    private val defaultPage = 1
-
-    private val _movieLiveData = StoreListLiveData<MovieResponse>()
-    val movieLiveData: LiveData<ItemsContainer<MovieResponse>> = _movieLiveData
-
+    private val _movieLiveData = MutableLiveData<List<MovieResponse>>()
     private val _stateLiveData = StateLiveData()
+
+    val movieLiveData: LiveData<List<MovieResponse>> = _movieLiveData
     val stateLiveData: LiveData<PageState> = _stateLiveData
 
+    val paging = MoviePaginator(1, MoviePaginatorInterface(this::getMovies))
+
     init {
-        getMovies()
+        paging.load()
     }
 
-    fun getMovies(page: Int = defaultPage) {
+    fun getMovies(page: Int) {
         viewModelScope.launch(dispatcher) {
-            postValue({repository.getMovies(page)}, _movieLiveData).catchStateIn(_stateLiveData)
+            postValues({repository.getMovies(page)}, _movieLiveData, paging).catchStateIn(_stateLiveData)
         }
     }
 }

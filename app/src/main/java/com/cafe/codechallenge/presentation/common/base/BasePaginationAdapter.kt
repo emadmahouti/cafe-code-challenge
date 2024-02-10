@@ -14,13 +14,8 @@ abstract class BasePaginationAdapter<T>(private val onBindingPosition: Int = 1):
     var callback: OneArgCallback<Int> = {}
 
     override fun bind(holder: BaseViewHolder, position: Int) {
-        if(itemCount - onBindingPosition == holder.absoluteAdapterPosition && page < totalPage) {
+        if(itemCount - onBindingPosition == holder.absoluteAdapterPosition) {
             callback(++page)
         }
-    }
-
-    fun setPaginationData(totalPage: Int, page: Int) {
-        this.totalPage = totalPage
-        this.page = page
     }
 }

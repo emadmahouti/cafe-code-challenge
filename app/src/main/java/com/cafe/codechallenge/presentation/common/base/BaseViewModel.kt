@@ -3,10 +3,13 @@ package com.cafe.codechallenge.presentation.common.base
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.cafe.codechallenge.data.remote.model.*
+import com.cafe.codechallenge.presentation.common.util.Paginator
+import com.cafe.codechallenge.util.default
 import com.cafe.codechallenge.util.livedata.SingleLiveData
 import com.pixy.codebase.common.viewgroup.items.PageState
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.flow
 
 /**
@@ -15,41 +18,55 @@ import kotlinx.coroutines.flow.flow
 open class BaseViewModel: ViewModel() {
     val toastLiveData = SingleLiveData<String>()
 
-    inline fun <T> postValue(
-        crossinline block: suspend () -> DataHolder<T>,
-        liveData: MutableLiveData<T>
-    ): Flow<PageState> {
-        return flow {
-            emit(PageState.Fetching(true))
-            val result = block.invoke()
-            emit(PageState.Fetching(false))
+    inline fun <T> postValues(
+        crossinline  block: suspend () -> DataHolder<ItemsContainer<T>>,
+        liveData: MutableLiveData<List<T>>,
+        paging: Paginator<ItemsContainer<*>>? = null
+    ) =  handleRequest(block) { value ->
 
-            result.doOnSuccess { value ->
-                if (value is ItemsContainer<*>) {
-                    if (value.results.isEmpty())
-                        emit(PageState.NoData)
-                }
+        paging?.nextKey(value)
 
-                liveData.postValue(value)
-            }
+        if (value.results.isEmpty())
+            emit(PageState.NoData)
 
-            result.doOnError { _, msg ->
-                if (msg != null) {
-                    emit(PageState.Failure(msg))
-                }
-            }
-
-            result.ifHasMessage {value ->
-                postToast(value)
+        liveData.default(arrayListOf()).also { liveData ->
+            liveData.value?.toMutableList()?.let {items ->
+                items.addAll(value.results)
+                liveData.postValue(items)
             }
         }
     }
 
-    fun <T> postValue(
-        deferred: Deferred<DataHolder<T>>,
+    inline fun <T> postValue(
+        crossinline block: suspend () -> DataHolder<T>,
         liveData: MutableLiveData<T>
     ): Flow<PageState> {
-        return postValue({deferred.await()}, liveData)
+        return handleRequest(block) {value ->
+            liveData.postValue(value)
+        }
+    }
+
+    inline fun<T> handleRequest(
+        crossinline data: suspend () -> DataHolder<T>,
+        crossinline block: suspend FlowCollector<PageState>.(value: T) -> Unit) = flow {
+
+        emit(PageState.Fetching(true))
+        val result = data.invoke()
+        emit(PageState.Fetching(false))
+
+        result.doOnSuccess { value ->
+            block.invoke(this, value)
+        }
+
+        result.doOnError { _, msg ->
+            if (msg != null) {
+                emit(PageState.Failure(msg))
+            }
+        }
+
+        result.ifHasMessage {value ->
+            postToast(value)
+        }
     }
 
     fun postToast(message: String) {

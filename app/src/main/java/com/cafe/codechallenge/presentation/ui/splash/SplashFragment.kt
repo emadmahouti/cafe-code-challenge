@@ -37,13 +37,13 @@ class SplashFragment: BaseFragmentVM<MovieViewModel>() {
     }
 
     private fun handleState(state: PageState) {
-        if(state is PageState.Fetching && !state.fetch) {
+        if(state is PageState.Fetching) {
             splashView.showContent()
-            navigateToMovieList()
-        }
-        if(state is PageState.Failure) {
+            if(!state.fetch)
+                navigateToMovieList()
+        } else if(state is PageState.Failure) {
             splashView.showRetry(null) {
-                viewModel.getMovies()
+                viewModel.paging.load()
             }
         }
     }

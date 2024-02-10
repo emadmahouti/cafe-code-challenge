@@ -17,5 +17,17 @@ suspend fun<T> Flow<T>.catchStateIn(liveData: MutableLiveData<T>): PageState {
     return PageState.NoData
 }
 
+fun<T> MutableLiveData<T>.default(init: T): MutableLiveData<T> {
+    if(this.value == null)
+        this.value = init
+
+    return this
+}
+
+fun<T> MutableLiveData<List<T>>.reset(): MutableLiveData<List<T>> {
+    this.value = null
+    return this
+}
+
 val MovieResponse.image get() =
     "${ConfigProvider().image_base_url}$poster_path"
