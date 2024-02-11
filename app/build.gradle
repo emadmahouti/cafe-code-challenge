@@ -6,9 +6,21 @@ plugins {
     id 'com.google.devtools.ksp' version "1.5.31-1.0.0"
 }
 
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(rootProject.file("keystore.properties")))
+
 android {
     namespace 'com.cafe.codechallenge'
     compileSdk 34
+
+    signingConfigs {
+        release {
+            storeFile file(keystoreProperties['releaseKeyStore'])
+            keyAlias keystoreProperties['releaseKeyAlias']
+            keyPassword keystoreProperties['releaseKeyPassword']
+            storePassword keystoreProperties['releaseStorePassword']
+        }
+    }
 
     defaultConfig {
         applicationId "com.cafe.codechallenge"
@@ -24,6 +36,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {
