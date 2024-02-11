@@ -11,6 +11,8 @@ interface PersistentMovieRepository {
     suspend fun getMovies(limit: Int, offset: Int): List<MovieLocalEntity>
     suspend fun count(): Int
     suspend fun insertMovies(items: List<MovieLocalEntity>)
+
+    suspend fun delete(ids: List<Int>)
 }
 
 
@@ -25,5 +27,9 @@ class PersistentMovieRepositoryImp(private val dao: MovieDao): PersistentMovieRe
 
     override suspend fun insertMovies(items: List<MovieLocalEntity>) {
         dao.insert(items)
+    }
+
+    override suspend fun delete(ids: List<Int>) {
+        dao.delete(ids)
     }
 }

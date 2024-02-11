@@ -22,4 +22,7 @@ interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     @JvmSuppressWildcards
     suspend fun insert(items: List<MovieLocalEntity>)
+
+    @Query("delete from $movieTable where id in (:ids)")
+    suspend fun delete(ids: List<Int>)
 }

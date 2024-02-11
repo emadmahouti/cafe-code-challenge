@@ -42,6 +42,13 @@ fun<T> MutableLiveData<List<T>>.invalidate(): MutableLiveData<List<T>> {
     return this
 }
 
+infix fun<T> Collection<T>.diff(other: Collection<T>): Pair<Set<T>, Set<T>> {
+    val left = this subtract other.toSet()
+    val right = other subtract this.toSet()
+
+    return left to right
+}
+
 fun MovieEntity.toLocalEntity(): MovieLocalEntity {
     return MovieLocalEntity(
         id,

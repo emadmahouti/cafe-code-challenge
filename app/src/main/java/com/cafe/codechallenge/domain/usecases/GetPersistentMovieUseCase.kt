@@ -12,7 +12,7 @@ import kotlinx.coroutines.withContext
  * Created by emadmahouti on 2/11/24
  */
 interface GetPersistentMovieUseCase: UseCase {
-    suspend operator fun invoke(pageCursor: Int, perPage: Int = 10): DataHolder<ItemsContainer<MovieEntity>>
+    suspend operator fun invoke(pageCursor: Int, perPage: Int = 20): DataHolder<ItemsContainer<MovieEntity>>
 }
 
 class GetPersistentMovieUseCaseImp(
