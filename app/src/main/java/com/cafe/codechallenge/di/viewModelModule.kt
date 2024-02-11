@@ -18,5 +18,5 @@ import org.koin.dsl.module
 val viewModelModule = module {
 
     factory<CoroutineDispatcher> { Dispatchers.Main }
-    viewModel { (params: ConnectivityManager) ->  MovieViewModel(get(), get(), get(), params) }
+    viewModel { params ->  MovieViewModel(get(), get(), get(), params.get()) }
 }

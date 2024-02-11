@@ -30,7 +30,7 @@ class MoviePaginator(
             cursor = item.page + 1
     }
 
-    override fun reset() {
+    override fun invalidate() {
         cursor = initialKey
         hasNext = true
     }

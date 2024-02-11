@@ -21,9 +21,3 @@ fun CImageView.set(rl: String) {
 fun LinearLayout.center() {
     gravity = Gravity.CENTER_VERTICAL or Gravity.CENTER_HORIZONTAL
 }
-
-/**
- * static id used for save view state
- */
-fun View.generateStaticViewId(): Int =
-    this.hashCode()

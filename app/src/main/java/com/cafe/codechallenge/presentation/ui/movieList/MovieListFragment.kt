@@ -5,7 +5,7 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.cafe.codechallenge.R
 import com.cafe.codechallenge.presentation.common.base.BaseFragmentVM
-import com.cafe.codechallenge.util.getConnectivityManager
+import com.cafe.codechallenge.util.isNetworkAvailable
 import com.pixy.codebase.common.viewgroup.items.PageState
 import com.pixy.codebase.extensions.views
 import com.pixy.codebase.utils.ToastManager
@@ -19,7 +19,7 @@ class MovieListFragment: BaseFragmentVM<MovieViewModel>() {
 
     override val viewModel: MovieViewModel by viewModel(
         ownerProducer = { findNavController().getBackStackEntry(R.id.main_graph) },
-        parameters = { parametersOf(requireContext().getConnectivityManager()) })
+        parameters = { parametersOf(requireContext().isNetworkAvailable()) })
 
     private val movieView: MovieListView by views {
         MovieListView(requireContext())

@@ -24,11 +24,15 @@ data class MovieResponse (
 
     @ColumnInfo(name = "poster_path")
     @field:Json(name = "poster_path")
-    val poster_path: String,
+    val poster_path: String?,
 
     @ColumnInfo(name = "overview")
     @field:Json(name = "overview")
     val overview: String,
+
+    @ColumnInfo(name = "popularity")
+    @field:Json(name = "popularity")
+    val popularity: Float,
 
     @ColumnInfo(name = "release_date")
     @field:Json(name = "release_date")

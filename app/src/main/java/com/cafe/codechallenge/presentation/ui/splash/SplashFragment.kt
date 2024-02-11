@@ -7,7 +7,7 @@ import com.cafe.codechallenge.R
 import com.cafe.codechallenge.presentation.common.base.BaseFragmentVM
 import com.cafe.codechallenge.presentation.ui.movieList.MovieViewModel
 import com.cafe.codechallenge.util.bazaarSmallLogo
-import com.cafe.codechallenge.util.getConnectivityManager
+import com.cafe.codechallenge.util.isNetworkAvailable
 import com.pixy.codebase.common.viewgroup.items.PageState
 import com.pixy.codebase.extensions.views
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -24,7 +24,7 @@ class SplashFragment : BaseFragmentVM<MovieViewModel>() {
     override val viewModel: MovieViewModel by viewModel(
         ownerProducer = { findNavController().getBackStackEntry(R.id.main_graph) },
         parameters = {
-            parametersOf(requireContext().getConnectivityManager())
+            parametersOf(requireContext().isNetworkAvailable())
         })
 
     private val splashView: SplashView by views {
@@ -56,7 +56,7 @@ class SplashFragment : BaseFragmentVM<MovieViewModel>() {
             is PageState.NoData -> {
                 splashView.showRetry(null) {
                     viewModel.reset()
-                    viewModel.paging.load()
+                    viewModel.getMovieList(1)
                 }
             }
         }

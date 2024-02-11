@@ -7,5 +7,5 @@ interface Paginator<in Item> {
 
     fun load()
     fun nextKey(item: Item)
-    fun reset()
+    fun invalidate()
 }

@@ -5,10 +5,8 @@ import android.graphics.*
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.cafe.codechallenge.R
-import com.cafe.codechallenge.data.remote.model.ItemsContainer
 import com.cafe.codechallenge.data.remote.model.MovieResponse
 import com.cafe.codechallenge.presentation.common.share.ConcatWithLoadingAdapter
-import com.cafe.codechallenge.presentation.common.generateStaticViewId
 import com.cafe.codechallenge.presentation.ui.movieList.items.MovieListAdapter
 import com.cafe.codechallenge.util.bazaarSmallLogo
 import com.cafe.codechallenge.util.providers.ColorProvider
@@ -115,7 +113,7 @@ class MovieListView(private val context: Context): CConstraintLayout(context), U
             this.color = getColor(ColorProvider.shadowColor)
             this.setShadowLayer(80f, 0f, 0f, getColor(ColorProvider.shadowColor))
             this.isAntiAlias = true
-            this.alpha = 15
+            this.alpha = 20
             xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP)
         }
     }

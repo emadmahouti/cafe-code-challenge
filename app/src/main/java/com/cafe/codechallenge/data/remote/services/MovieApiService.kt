@@ -12,5 +12,5 @@ import retrofit2.http.Query
 interface MovieApiService {
 
     @GET("discover/movie")
-    suspend fun getIntroData(@Query("page") page: Int): Response<ItemsContainer<MovieResponse>>
+    suspend fun getIntroData(@Query("page") page: Int, @Query("sort_by") sort: String = "popularity.desc"): Response<ItemsContainer<MovieResponse>>
 }

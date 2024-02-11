@@ -20,13 +20,10 @@ suspend fun<T> Flow<T>.catchStateIn(liveData: MutableLiveData<T>): PageState {
 
     return PageState.NoData
 }
-
-fun Context.getConnectivityManager(): ConnectivityManager {
-    return getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-}
-fun ConnectivityManager.isNetworkAvailable(): Boolean {
-    val network = activeNetwork
-    val netC = getNetworkCapabilities(network)
+fun Context.isNetworkAvailable(): Boolean {
+    val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    val network = connectivityManager.activeNetwork
+    val netC = connectivityManager.getNetworkCapabilities(network)
     if(netC?.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) == true || netC?.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) == true)
         return true
     return false
@@ -39,7 +36,7 @@ fun<T> MutableLiveData<T>.default(init: T): MutableLiveData<T> {
     return this
 }
 
-fun<T> MutableLiveData<List<T>>.reset(): MutableLiveData<List<T>> {
+fun<T> MutableLiveData<List<T>>.invalidate(): MutableLiveData<List<T>> {
     this.value = null
     return this
 }

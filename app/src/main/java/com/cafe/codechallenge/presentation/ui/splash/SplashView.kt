@@ -29,7 +29,6 @@ class SplashView(context: Context): ContainerLayout(context) {
 
         setupContent(VLinearLayout(context).apply {
             center()
-
             addView(logoView, ParamsProvider.Linear(79.dpToPx, 88.dpToPx))
             addView(loadingView, ParamsProvider.Linear.wrapContent().margin(top = 50.dpToPx))
 

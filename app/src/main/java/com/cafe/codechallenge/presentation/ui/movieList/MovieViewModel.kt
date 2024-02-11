@@ -1,6 +1,5 @@
 package com.cafe.codechallenge.presentation.ui.movieList
 
-import android.net.ConnectivityManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -22,29 +21,40 @@ class MovieViewModel(
     private val movieUseCase: GetMovieUseCase,
     private val persistentMovieUseCase: GetPersistentMovieUseCase,
     private val dispatcher: CoroutineDispatcher,
-    private val connectivity: ConnectivityManager): BaseViewModel() {
+    private val isNetworkAvailable: Boolean): BaseViewModel() {
 
-    private val _movieLiveData = MutableLiveData<List<MovieResponse>>()
-    private val _stateLiveData = StateLiveData()
+    private val mutableMovieLiveData = MutableLiveData<List<MovieResponse>>()
+    private val mutableStateLiveData = StateLiveData()
 
-    val movieLiveData: LiveData<List<MovieResponse>> = _movieLiveData
-    val stateLiveData: LiveData<PageState> = _stateLiveData
+    val movieLiveData: LiveData<List<MovieResponse>> = mutableMovieLiveData
+    val stateLiveData: LiveData<PageState> = mutableStateLiveData
 
-    val paging = MoviePaginator(1, MoviePaginatorInterface(this::getMovies))
+    val paging = MoviePaginator(1, MoviePaginatorInterface(this::getData))
 
     init {
         paging.load()
     }
 
-    fun getMovies(page: Int) {
+    private fun getData(page: Int) {
+        if(isNetworkAvailable) getMovieList(page) else getLocalMovieList(page)
+    }
+
+    fun getLocalMovieList(page: Int) {
         viewModelScope.launch(dispatcher) {
-            val request = elsif(connectivity.isNetworkAvailable(), suspend {movieUseCase(page)}, suspend {persistentMovieUseCase(page)})
-            postValues(request, _movieLiveData, paging).catchStateIn(_stateLiveData)
+            postValues({persistentMovieUseCase(page)}, mutableMovieLiveData, paging).catchStateIn(mutableStateLiveData)
         }
     }
 
+    fun getMovieList(page: Int) {
+        viewModelScope.launch(dispatcher) {
+            postValues({movieUseCase(page)}, mutableMovieLiveData, paging).catchStateIn(mutableStateLiveData)
+        }
+    }
+
+
+
     fun reset() {
-        _movieLiveData.reset()
-        paging.reset()
+        mutableMovieLiveData.invalidate()
+        paging.invalidate()
     }
 }
