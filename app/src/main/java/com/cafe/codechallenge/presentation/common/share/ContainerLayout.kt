@@ -5,7 +5,6 @@ import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ProgressBar
-import com.pixy.codebase.common.CButton
 import com.pixy.codebase.common.CTextView
 import com.pixy.codebase.common.viewgroup.items.UIStateInterface
 import com.pixy.codebase.extensions.hide

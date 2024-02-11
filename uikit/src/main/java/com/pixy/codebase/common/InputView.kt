@@ -1,10 +1,8 @@
 package com.pixy.codebase.common
 
 import android.content.Context
-import android.os.Parcel
 import android.os.Parcelable
 import android.text.InputType
-import android.text.TextUtils
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.view.setPadding

@@ -2,7 +2,6 @@ package com.pixy.codebase.common
 
 import android.content.Context
 import android.content.res.ColorStateList
-import android.graphics.PorterDuff
 import android.widget.ProgressBar
 
 /**

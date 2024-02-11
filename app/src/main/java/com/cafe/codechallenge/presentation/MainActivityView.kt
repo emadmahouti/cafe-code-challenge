@@ -3,8 +3,6 @@ package com.cafe.codechallenge.presentation
 import android.content.Context
 import android.widget.FrameLayout
 import androidx.fragment.app.FragmentContainerView
-import androidx.fragment.app.FragmentManager
-import androidx.navigation.fragment.NavHostFragment
 import com.cafe.codechallenge.R
 import com.cafe.codechallenge.util.providers.ColorProvider
 import com.pixy.codebase.extensions.getColor

@@ -3,7 +3,6 @@ package com.cafe.codechallenge.presentation
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.NavHostFragment
 import com.cafe.codechallenge.R
 import com.cafe.codechallenge.util.LifecycleLogObserver

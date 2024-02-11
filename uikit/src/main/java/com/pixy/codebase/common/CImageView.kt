@@ -3,8 +3,6 @@ package com.pixy.codebase.common
 import android.content.Context
 import androidx.appcompat.widget.AppCompatImageView
 import coil.load
-import coil.transform.CircleCropTransformation
-import com.pixy.codebase.R
 
 /**
  * Created by emadmahouti on 5/12/23

@@ -1,6 +1,5 @@
 package com.cafe.codechallenge.data.remote.util
 
-import android.util.Log
 import com.cafe.codechallenge.data.model.DataHolder
 import com.cafe.codechallenge.data.model.MappableModel
 import retrofit2.HttpException

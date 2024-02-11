@@ -1,6 +1,5 @@
 package com.pixy.codebase.utils
 
-import android.app.UiModeManager
 import android.content.Context
 import android.content.res.Resources
 import android.util.TypedValue

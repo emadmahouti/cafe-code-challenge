@@ -1,13 +1,11 @@
 package com.cafe.codechallenge.presentation.common.share
 
 import android.content.Context
-import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.ConcatAdapter
 import com.cafe.codechallenge.presentation.common.base.BaseAdapter
 import com.cafe.codechallenge.presentation.common.base.BaseViewHolder
-import com.cafe.codechallenge.util.elsif
 import com.cafe.codechallenge.util.providers.ColorProvider
 import com.cafe.codechallenge.util.providers.SizeProvider
 import com.pixy.codebase.common.CProgressView

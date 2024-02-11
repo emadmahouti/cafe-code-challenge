@@ -1,7 +1,10 @@
 package com.cafe.codechallenge.presentation.ui.movieList
 
 import android.content.Context
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffXfermode
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.cafe.codechallenge.R

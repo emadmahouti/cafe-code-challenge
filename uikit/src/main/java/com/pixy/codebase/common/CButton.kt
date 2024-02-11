@@ -5,8 +5,8 @@ import android.view.Gravity
 import com.pixy.codebase.extensions.getColor
 import com.pixy.codebase.extensions.shape
 import com.pixy.codebase.providers.StyleInterface
-import com.pixy.codebase.utils.dpToPx
 import com.pixy.codebase.styleProvider
+import com.pixy.codebase.utils.dpToPx
 
 /**
  * Created by emadmahouti on 5/12/23

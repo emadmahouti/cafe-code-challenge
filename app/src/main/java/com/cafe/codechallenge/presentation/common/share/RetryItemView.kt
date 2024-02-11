@@ -8,12 +8,10 @@ import com.cafe.codechallenge.util.providers.StringProvider
 import com.pixy.codebase.common.CButton
 import com.pixy.codebase.common.CTextView
 import com.pixy.codebase.common.viewgroup.HLinearLayout
-import com.pixy.codebase.common.viewgroup.VLinearLayout
 import com.pixy.codebase.extensions.getColor
 import com.pixy.codebase.extensions.setCClickListener
 import com.pixy.codebase.providers.ParamsProvider
 import com.pixy.codebase.utils.SimpleCallback
-import com.pixy.codebase.utils.dpToPx
 
 /**
  * Created by emadmahouti on 2/9/24

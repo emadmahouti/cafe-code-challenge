@@ -9,7 +9,9 @@ import com.cafe.codechallenge.domain.usecases.GetPersistentMovieUseCase
 import com.cafe.codechallenge.presentation.common.base.BaseViewModel
 import com.cafe.codechallenge.presentation.ui.movieList.items.MoviePaginator
 import com.cafe.codechallenge.presentation.ui.movieList.items.MoviePaginatorInterface
-import com.cafe.codechallenge.util.*
+import com.cafe.codechallenge.util.StateLiveData
+import com.cafe.codechallenge.util.catchStateIn
+import com.cafe.codechallenge.util.invalidate
 import com.pixy.codebase.common.viewgroup.items.PageState
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch

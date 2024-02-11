@@ -1,6 +1,5 @@
 package com.cafe.codechallenge.presentation.common.base
 
-import android.util.Log
 import com.pixy.codebase.utils.OneArgCallback
 
 

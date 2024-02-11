@@ -9,7 +9,6 @@ import com.cafe.codechallenge.util.providers.StringProvider
 import com.cafe.codechallenge.util.providers.StyleProvider
 import com.pixy.codebase.common.CButton
 import com.pixy.codebase.common.CIconView
-import com.pixy.codebase.common.CImageView
 import com.pixy.codebase.common.CTextView
 import com.pixy.codebase.common.viewgroup.VLinearLayout
 import com.pixy.codebase.extensions.getColor

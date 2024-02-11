@@ -1,9 +1,6 @@
 package com.cafe.codechallenge.domain.model
 
 import androidx.annotation.Keep
-import androidx.room.ColumnInfo
-import androidx.room.PrimaryKey
-import com.squareup.moshi.Json
 
 /**
  * Created by emadmahouti on 2/11/24

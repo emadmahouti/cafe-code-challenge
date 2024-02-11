@@ -2,7 +2,6 @@ package com.cafe.codechallenge.util
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.cafe.codechallenge.util.livedata.SingleLiveData
 import com.pixy.codebase.common.viewgroup.items.PageState
 import okhttp3.Request
 
