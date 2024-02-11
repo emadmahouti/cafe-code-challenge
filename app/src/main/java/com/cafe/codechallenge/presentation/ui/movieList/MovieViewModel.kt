@@ -1,25 +1,18 @@
 package com.cafe.codechallenge.presentation.ui.movieList
 
+import android.net.ConnectivityManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.cafe.codechallenge.data.local.repositories.PersistentMovieRepository
-import com.cafe.codechallenge.data.remote.model.ItemsContainer
 import com.cafe.codechallenge.data.remote.model.MovieResponse
-import com.cafe.codechallenge.data.remote.repositories.MovieRepository
 import com.cafe.codechallenge.domain.usecases.GetMovieUseCase
-import com.cafe.codechallenge.domain.usecases.GetOfflineMovieUseCase
+import com.cafe.codechallenge.domain.usecases.GetPersistentMovieUseCase
 import com.cafe.codechallenge.presentation.common.base.BaseViewModel
-import com.cafe.codechallenge.presentation.common.util.Paginator
 import com.cafe.codechallenge.presentation.ui.movieList.items.MoviePaginator
 import com.cafe.codechallenge.presentation.ui.movieList.items.MoviePaginatorInterface
-import com.cafe.codechallenge.util.StateLiveData
-import com.cafe.codechallenge.util.catchStateIn
-import com.cafe.codechallenge.util.livedata.StoreListLiveData
-import com.cafe.codechallenge.util.reset
+import com.cafe.codechallenge.util.*
 import com.pixy.codebase.common.viewgroup.items.PageState
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 /**
@@ -27,8 +20,9 @@ import kotlinx.coroutines.launch
  */
 class MovieViewModel(
     private val movieUseCase: GetMovieUseCase,
-    private val offlineMovieUseCase: GetOfflineMovieUseCase,
-    private val dispatcher: CoroutineDispatcher): BaseViewModel() {
+    private val persistentMovieUseCase: GetPersistentMovieUseCase,
+    private val dispatcher: CoroutineDispatcher,
+    private val connectivity: ConnectivityManager): BaseViewModel() {
 
     private val _movieLiveData = MutableLiveData<List<MovieResponse>>()
     private val _stateLiveData = StateLiveData()
@@ -44,7 +38,13 @@ class MovieViewModel(
 
     fun getMovies(page: Int) {
         viewModelScope.launch(dispatcher) {
-            postValues({offlineMovieUseCase(page)}, _movieLiveData, paging).catchStateIn(_stateLiveData)
+            val request = elsif(connectivity.isNetworkAvailable(), suspend {movieUseCase(page)}, suspend {persistentMovieUseCase(page)})
+            postValues(request, _movieLiveData, paging).catchStateIn(_stateLiveData)
         }
+    }
+
+    fun reset() {
+        _movieLiveData.reset()
+        paging.reset()
     }
 }

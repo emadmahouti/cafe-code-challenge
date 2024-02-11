@@ -2,8 +2,8 @@ package com.cafe.codechallenge.di
 
 import com.cafe.codechallenge.domain.usecases.GetMovieUseCase
 import com.cafe.codechallenge.domain.usecases.GetMovieUseCaseImp
-import com.cafe.codechallenge.domain.usecases.GetOfflineMovieUseCase
-import com.cafe.codechallenge.domain.usecases.GetOfflineMovieUseCaseImp
+import com.cafe.codechallenge.domain.usecases.GetPersistentMovieUseCase
+import com.cafe.codechallenge.domain.usecases.GetPersistentMovieUseCaseImp
 import org.koin.dsl.module
 
 /**
@@ -11,5 +11,5 @@ import org.koin.dsl.module
  */
 val  useCaseModule = module {
     factory<GetMovieUseCase> { GetMovieUseCaseImp(get(), get()) }
-    factory<GetOfflineMovieUseCase> { GetOfflineMovieUseCaseImp(get()) }
+    factory<GetPersistentMovieUseCase> { GetPersistentMovieUseCaseImp(get()) }
 }

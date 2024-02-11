@@ -8,13 +8,13 @@ import kotlinx.coroutines.withContext
 /**
  * Created by emadmahouti on 2/11/24
  */
-interface GetOfflineMovieUseCase {
+interface GetPersistentMovieUseCase: UseCase {
     suspend operator fun invoke(pageCursor: Int, perPage: Int = 10): DataHolder<ItemsContainer<MovieResponse>>
 }
 
-class GetOfflineMovieUseCaseImp(
+class GetPersistentMovieUseCaseImp(
     private val persistentRepository: PersistentMovieRepository,
-) : GetOfflineMovieUseCase {
+) : GetPersistentMovieUseCase {
     override suspend fun invoke(pageCursor: Int, perPage: Int): DataHolder<ItemsContainer<MovieResponse>> {
         return withContext(Dispatchers.IO) {
             val result = persistentRepository.getMovies(perPage, perPage * (pageCursor - 1))

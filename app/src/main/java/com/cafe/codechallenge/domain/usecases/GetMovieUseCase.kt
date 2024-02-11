@@ -13,7 +13,7 @@ import kotlinx.coroutines.withContext
  * Created by emadmahouti on 2/11/24
  */
 
-interface GetMovieUseCase {
+interface GetMovieUseCase: UseCase {
     suspend operator fun invoke(pageCursor: Int): DataHolder<ItemsContainer<MovieResponse>>
 }
 

@@ -14,7 +14,7 @@ import com.cafe.codechallenge.util.movieTable
 
 @Dao
 interface MovieDao {
-    @Query("SELECT * FROM $movieTable LIMIT (:limit) OFFSET (:offset)" )
+    @Query("SELECT * FROM $movieTable ORDER BY release_date DESC LIMIT (:limit) OFFSET (:offset)" )
     suspend fun getAll(limit: Int, offset: Int): List<MovieResponse>
 
     @Query("SELECT count(*) FROM $movieTable")

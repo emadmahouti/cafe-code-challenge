@@ -2,23 +2,24 @@ package com.cafe.codechallenge.presentation.ui.movieList
 
 import android.transition.TransitionInflater
 import android.view.View
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.cafe.codechallenge.R
 import com.cafe.codechallenge.presentation.common.base.BaseFragmentVM
+import com.cafe.codechallenge.util.getConnectivityManager
 import com.pixy.codebase.common.viewgroup.items.PageState
 import com.pixy.codebase.extensions.views
 import com.pixy.codebase.utils.ToastManager
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 /**
  * Created by emadmahouti on 2/8/24
  */
 class MovieListFragment: BaseFragmentVM<MovieViewModel>() {
 
-    override val viewModel: MovieViewModel by viewModel(ownerProducer = {
-        findNavController().getBackStackEntry(R.id.main_graph)
-    })
+    override val viewModel: MovieViewModel by viewModel(
+        ownerProducer = { findNavController().getBackStackEntry(R.id.main_graph) },
+        parameters = { parametersOf(requireContext().getConnectivityManager()) })
 
     private val movieView: MovieListView by views {
         MovieListView(requireContext())
