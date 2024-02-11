@@ -8,6 +8,11 @@ sealed class DataHolder<out T>(val message: String?) {
     data class Failure<T>(val code: Int, val msg: String?) : DataHolder<T>(msg)
 }
 
+
+fun <T> DataHolder<T>.isSuccess(): Boolean {
+    return this is DataHolder.Success
+}
+
 inline fun <T> DataHolder<T>.doOnSuccess(block: (value: T) -> Unit): DataHolder<T> {
     if(this is DataHolder.Success<T>) block(body)
     return this

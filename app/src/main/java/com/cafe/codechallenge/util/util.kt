@@ -12,6 +12,7 @@ import okhttp3.Request
 
 const val bazaarSmallLogo = "bazaar_small_logo"
 const val bazaarLargeLogo = "bazaar_large_logo"
+const val movieTable = "Movie"
 
 fun log(key: String, message: Any) {
     Log.d(key, message.toString())

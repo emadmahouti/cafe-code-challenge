@@ -22,7 +22,7 @@ class TaskApplication: Application() {
     private fun startDI() {
         startKoin {
             androidContext(this@TaskApplication)
-            modules(appModule, networkModule, repositoryModule, useCaseModule, viewModelModule)
+            modules(appModule, networkModule, repositoryModule, useCaseModule, viewModelModule, databaseModule)
         }
     }
 }

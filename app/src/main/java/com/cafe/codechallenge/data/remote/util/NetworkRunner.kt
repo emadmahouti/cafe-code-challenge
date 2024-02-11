@@ -8,7 +8,7 @@ import retrofit2.Response
  * Created by emadmahouti on 2/8/24
  */
 class NetworkRunner {
-    suspend fun<InnerModel> performCall(call: suspend ()-> Response<InnerModel>): DataHolder<InnerModel> {
+    suspend inline fun<InnerModel> performCall(crossinline call: suspend ()-> Response<InnerModel>): DataHolder<InnerModel> {
         val result =  try {
             val response = call.invoke()
             val body: InnerModel? = response.body()
