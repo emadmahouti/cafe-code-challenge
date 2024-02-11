@@ -1,17 +1,16 @@
 package com.cafe.codechallenge.presentation.ui.movieList.items
 
 import android.content.Context
-import com.cafe.codechallenge.data.remote.model.MovieResponse
+import com.cafe.codechallenge.domain.model.MovieEntity
 import com.cafe.codechallenge.presentation.common.base.BasePaginationAdapter
 import com.cafe.codechallenge.presentation.common.base.BaseViewHolder
 import com.pixy.codebase.extensions.setCClickListener
-import com.pixy.codebase.providers.ParamsProvider
 import com.pixy.codebase.utils.OneArgCallback
 
 /**
  * Created by emadmahouti on 2/8/24
  */
-class MovieListAdapter : BasePaginationAdapter<MovieResponse>(onBindingPosition = 6) {
+class MovieListAdapter : BasePaginationAdapter<MovieEntity>(onBindingPosition = 6) {
     var paginationCallback: OneArgCallback<Int> by this::callback
 
     override fun createViewHolder(context: Context, viewType: Int): BaseViewHolder {
@@ -30,11 +29,11 @@ class MovieListAdapter : BasePaginationAdapter<MovieResponse>(onBindingPosition 
         }
     }
 
-    override fun areContentTheSame(oldItem: MovieResponse, newItem: MovieResponse): Boolean {
+    override fun areContentTheSame(oldItem: MovieEntity, newItem: MovieEntity): Boolean {
         return oldItem == newItem
     }
 
-    override fun areItemsTheSame(oldItem: MovieResponse, newItem: MovieResponse): Boolean {
+    override fun areItemsTheSame(oldItem: MovieEntity, newItem: MovieEntity): Boolean {
         return oldItem.id == newItem.id
     }
 }

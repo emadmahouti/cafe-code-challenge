@@ -5,7 +5,7 @@ import android.graphics.*
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.cafe.codechallenge.R
-import com.cafe.codechallenge.data.remote.model.MovieResponse
+import com.cafe.codechallenge.domain.model.MovieEntity
 import com.cafe.codechallenge.presentation.common.share.ConcatWithLoadingAdapter
 import com.cafe.codechallenge.presentation.ui.movieList.items.MovieListAdapter
 import com.cafe.codechallenge.util.bazaarSmallLogo
@@ -31,7 +31,7 @@ class MovieListView(private val context: Context): CConstraintLayout(context), U
     private val concatAdapter = ConcatWithLoadingAdapter(listAdapter)
 
     var paginationCallback: OneArgCallback<Int> by listAdapter::paginationCallback
-    var itemClickListener: ThreeArgsCallback<View, MovieResponse, Int>? by listAdapter::itemClickListener
+    var itemClickListener: ThreeArgsCallback<View, MovieEntity, Int>? by listAdapter::itemClickListener
 
     init {
         val sideMargin = 15.dpToPx
@@ -83,7 +83,7 @@ class MovieListView(private val context: Context): CConstraintLayout(context), U
         }
     }
 
-    fun set(items: List<MovieResponse>) {
+    fun set(items: List<MovieEntity>) {
         listAdapter.addItems(items)
     }
 

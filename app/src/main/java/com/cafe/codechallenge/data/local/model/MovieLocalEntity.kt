@@ -1,32 +1,37 @@
-package com.cafe.codechallenge.data.remote.model
+package com.cafe.codechallenge.data.local.model
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.cafe.codechallenge.data.model.MappableModel
 import com.cafe.codechallenge.domain.model.MovieEntity
+import com.cafe.codechallenge.util.movieTable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Created by emadmahouti on 2/8/24
+ * Created by emadmahouti on 2/11/24
  */
-
 @JsonClass(generateAdapter = true)
-data class MovieResponse (
+@Entity(movieTable)
+data class MovieLocalEntity (
+    @PrimaryKey
     @field:Json(name = "id")
     val id: Int,
 
-    @field:Json(name = "original_title")
+    @ColumnInfo(name = "original_title")
     val title: String,
 
-    @field:Json(name = "poster_path")
+    @ColumnInfo(name = "poster_path")
     val poster_path: String?,
 
-    @field:Json(name = "overview")
+    @ColumnInfo(name = "overview")
     val overview: String,
 
-    @field:Json(name = "popularity")
+    @ColumnInfo(name = "popularity")
     val popularity: Float,
 
-    @field:Json(name = "release_date")
+    @ColumnInfo(name = "release_date")
     val release_date: String,
 ): MappableModel<MovieEntity> {
     override fun map(): MovieEntity {

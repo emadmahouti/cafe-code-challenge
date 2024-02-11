@@ -1,21 +1,21 @@
 package com.cafe.codechallenge.data.local.repositories
 
 import com.cafe.codechallenge.data.local.dao.MovieDao
-import com.cafe.codechallenge.data.remote.model.MovieResponse
+import com.cafe.codechallenge.data.local.model.MovieLocalEntity
 
 /**
  * Created by emadmahouti on 2/11/24
  */
 
 interface PersistentMovieRepository {
-    suspend fun getMovies(limit: Int, offset: Int): List<MovieResponse>
+    suspend fun getMovies(limit: Int, offset: Int): List<MovieLocalEntity>
     suspend fun count(): Int
-    suspend fun insertMovies(items: List<MovieResponse>)
+    suspend fun insertMovies(items: List<MovieLocalEntity>)
 }
 
 
 class PersistentMovieRepositoryImp(private val dao: MovieDao): PersistentMovieRepository {
-    override suspend fun getMovies(limit: Int, offset: Int): List<MovieResponse> {
+    override suspend fun getMovies(limit: Int, offset: Int): List<MovieLocalEntity> {
         return dao.getAll(limit, offset)
     }
 
@@ -23,7 +23,7 @@ class PersistentMovieRepositoryImp(private val dao: MovieDao): PersistentMovieRe
         return dao.count()
     }
 
-    override suspend fun insertMovies(items: List<MovieResponse>) {
+    override suspend fun insertMovies(items: List<MovieLocalEntity>) {
         dao.insert(items)
     }
 }

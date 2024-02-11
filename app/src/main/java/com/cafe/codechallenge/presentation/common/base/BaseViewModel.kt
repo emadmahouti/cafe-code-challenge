@@ -2,12 +2,11 @@ package com.cafe.codechallenge.presentation.common.base
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.cafe.codechallenge.data.remote.model.*
+import com.cafe.codechallenge.data.model.*
 import com.cafe.codechallenge.presentation.common.util.Paginator
 import com.cafe.codechallenge.util.default
 import com.cafe.codechallenge.util.livedata.SingleLiveData
 import com.pixy.codebase.common.viewgroup.items.PageState
-import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.flow

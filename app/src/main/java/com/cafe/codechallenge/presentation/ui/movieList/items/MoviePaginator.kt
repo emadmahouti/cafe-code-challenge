@@ -1,7 +1,6 @@
 package com.cafe.codechallenge.presentation.ui.movieList.items
 
-import com.cafe.codechallenge.data.remote.model.ItemsContainer
-import com.cafe.codechallenge.data.remote.model.MovieResponse
+import com.cafe.codechallenge.data.model.ItemsContainer
 import com.cafe.codechallenge.presentation.common.util.Paginator
 
 /**

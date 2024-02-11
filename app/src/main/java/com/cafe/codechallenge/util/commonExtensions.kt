@@ -4,7 +4,8 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import androidx.lifecycle.MutableLiveData
-import com.cafe.codechallenge.data.remote.model.MovieResponse
+import com.cafe.codechallenge.data.local.model.MovieLocalEntity
+import com.cafe.codechallenge.domain.model.MovieEntity
 import com.cafe.codechallenge.util.providers.ConfigProvider
 import com.pixy.codebase.common.viewgroup.items.PageState
 import kotlinx.coroutines.flow.Flow
@@ -41,5 +42,16 @@ fun<T> MutableLiveData<List<T>>.invalidate(): MutableLiveData<List<T>> {
     return this
 }
 
-val MovieResponse.image get() =
-    "${ConfigProvider().image_base_url}$poster_path"
+fun MovieEntity.toLocalEntity(): MovieLocalEntity {
+    return MovieLocalEntity(
+        id,
+        title,
+        posterPath,
+        overview,
+        popularity,
+        releaseDate
+    )
+}
+
+val MovieEntity.image get() =
+    "${ConfigProvider().image_base_url}$posterPath"

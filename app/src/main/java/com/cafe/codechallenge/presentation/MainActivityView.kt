@@ -14,7 +14,7 @@ import com.pixy.codebase.providers.ParamsProvider
  * Created by emadmahouti on 2/8/24
  */
 class MainActivityView(context: Context): FrameLayout(context) {
-    private val fragmentView = FragmentContainerView(context)
+    val fragmentView = FragmentContainerView(context)
 
     init {
         addView(fragmentView, ParamsProvider.Frame.fullSize())
@@ -23,13 +23,5 @@ class MainActivityView(context: Context): FrameLayout(context) {
             id = R.id.main_frame
             setBackgroundColor(getColor(ColorProvider.backgroundColor))
         }
-    }
-
-    fun init(fm: FragmentManager) {
-        val navHost = NavHostFragment.create(R.navigation.main_graph)
-        fm.beginTransaction()
-            .replace(fragmentView.id, navHost)
-            .setPrimaryNavigationFragment(navHost) // equivalent to app:defaultNavHost="true"
-            .commit()
     }
 }

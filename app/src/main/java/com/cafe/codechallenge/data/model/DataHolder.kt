@@ -1,4 +1,4 @@
-package com.cafe.codechallenge.data.remote.model
+package com.cafe.codechallenge.data.model
 
 /**
  * Created by emadmahouti on 2/8/24

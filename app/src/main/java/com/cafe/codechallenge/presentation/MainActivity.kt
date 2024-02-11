@@ -1,7 +1,11 @@
 package com.cafe.codechallenge.presentation
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
+import androidx.navigation.fragment.NavHostFragment
+import com.cafe.codechallenge.R
 import com.cafe.codechallenge.util.LifecycleLogObserver
 
 /**
@@ -17,11 +21,21 @@ class MainActivity: AppCompatActivity() {
         LifecycleLogObserver(lifecycle, this::class.java.simpleName)
 
         if(savedInstanceState == null)
-            mainActivityView?.init(supportFragmentManager)
+            init(mainActivityView?.fragmentView?.id!!)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         mainActivityView = null
+    }
+
+    @SuppressLint("CommitTransaction")
+    private fun init(id: Int) {
+        val navHost = NavHostFragment.create(R.navigation.main_graph)
+        supportFragmentManager.beginTransaction().apply {
+            replace(id, navHost)
+            setPrimaryNavigationFragment(navHost) // equivalent to app:defaultNavHost="true"
+            this.commit()
+        }
     }
 }

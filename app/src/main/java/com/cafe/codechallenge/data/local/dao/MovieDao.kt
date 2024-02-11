@@ -4,8 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.cafe.codechallenge.data.remote.model.ItemsContainer
-import com.cafe.codechallenge.data.remote.model.MovieResponse
+import com.cafe.codechallenge.data.local.model.MovieLocalEntity
 import com.cafe.codechallenge.util.movieTable
 
 /**
@@ -15,12 +14,12 @@ import com.cafe.codechallenge.util.movieTable
 @Dao
 interface MovieDao {
     @Query("SELECT * FROM $movieTable ORDER BY popularity DESC LIMIT (:limit) OFFSET (:offset)" )
-    suspend fun getAll(limit: Int, offset: Int): List<MovieResponse>
+    suspend fun getAll(limit: Int, offset: Int): List<MovieLocalEntity>
 
     @Query("SELECT count(*) FROM $movieTable")
     suspend fun count(): Int
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     @JvmSuppressWildcards
-    suspend fun insert(items: List<MovieResponse>)
+    suspend fun insert(items: List<MovieLocalEntity>)
 }

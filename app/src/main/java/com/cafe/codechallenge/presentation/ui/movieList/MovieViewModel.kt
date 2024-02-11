@@ -3,7 +3,7 @@ package com.cafe.codechallenge.presentation.ui.movieList
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.cafe.codechallenge.data.remote.model.MovieResponse
+import com.cafe.codechallenge.domain.model.MovieEntity
 import com.cafe.codechallenge.domain.usecases.GetMovieUseCase
 import com.cafe.codechallenge.domain.usecases.GetPersistentMovieUseCase
 import com.cafe.codechallenge.presentation.common.base.BaseViewModel
@@ -23,10 +23,10 @@ class MovieViewModel(
     private val dispatcher: CoroutineDispatcher,
     private val isNetworkAvailable: Boolean): BaseViewModel() {
 
-    private val mutableMovieLiveData = MutableLiveData<List<MovieResponse>>()
+    private val mutableMovieLiveData = MutableLiveData<List<MovieEntity>>()
     private val mutableStateLiveData = StateLiveData()
 
-    val movieLiveData: LiveData<List<MovieResponse>> = mutableMovieLiveData
+    val movieLiveData: LiveData<List<MovieEntity>> = mutableMovieLiveData
     val stateLiveData: LiveData<PageState> = mutableStateLiveData
 
     val paging = MoviePaginator(1, MoviePaginatorInterface(this::getData))
