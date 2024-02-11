@@ -1,5 +1,6 @@
 package com.cafe.codechallenge.data.remote.model
 
+import androidx.annotation.Keep
 import com.cafe.codechallenge.data.model.MappableModel
 import com.cafe.codechallenge.domain.model.MovieEntity
 import com.squareup.moshi.Json
@@ -9,6 +10,7 @@ import com.squareup.moshi.JsonClass
  * Created by emadmahouti on 2/8/24
  */
 
+@Keep
 @JsonClass(generateAdapter = true)
 data class MovieResponse (
     @field:Json(name = "id")

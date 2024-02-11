@@ -1,8 +1,11 @@
 package com.cafe.codechallenge.data.model
 
+import androidx.annotation.Keep
+
 /**
  * Created by emadmahouti on 2/8/24
  */
+@Keep
 sealed class DataHolder<out T>(val message: String?) {
     data class Success<T>(val body: T) : DataHolder<T>(null)
     data class Failure<T>(val code: Int, val msg: String?) : DataHolder<T>(msg)

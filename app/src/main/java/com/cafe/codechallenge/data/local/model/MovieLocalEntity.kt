@@ -1,5 +1,6 @@
 package com.cafe.codechallenge.data.local.model
 
+import androidx.annotation.Keep
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -12,6 +13,7 @@ import com.squareup.moshi.JsonClass
 /**
  * Created by emadmahouti on 2/11/24
  */
+@Keep
 @JsonClass(generateAdapter = true)
 @Entity(movieTable)
 data class MovieLocalEntity (

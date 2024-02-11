@@ -1,8 +1,11 @@
 package com.cafe.codechallenge.data.model
 
+import androidx.annotation.Keep
+
 /**
  * Created by emadmahouti on 2/11/24
  */
+@Keep
 data class MappableItemContainer<T, I: MappableModel<T>>(
     val results: List<I>,
     val page: Int,
