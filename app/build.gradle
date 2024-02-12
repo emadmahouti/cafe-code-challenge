@@ -13,15 +13,6 @@ android {
     namespace 'com.cafe.codechallenge'
     compileSdk 34
 
-    signingConfigs {
-        release {
-            storeFile file(keystoreProperties['releaseKeyStore'])
-            keyAlias keystoreProperties['releaseKeyAlias']
-            keyPassword keystoreProperties['releaseKeyPassword']
-            storePassword keystoreProperties['releaseStorePassword']
-        }
-    }
-
     defaultConfig {
         applicationId "com.cafe.codechallenge"
         minSdk 23
@@ -36,7 +27,6 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
         }
     }
     compileOptions {
