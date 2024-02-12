@@ -6,9 +6,6 @@ plugins {
     id 'com.google.devtools.ksp' version "1.5.31-1.0.0"
 }
 
-def keystoreProperties = new Properties()
-keystoreProperties.load(new FileInputStream(rootProject.file("keystore.properties")))
-
 android {
     namespace 'com.cafe.codechallenge'
     compileSdk 34
