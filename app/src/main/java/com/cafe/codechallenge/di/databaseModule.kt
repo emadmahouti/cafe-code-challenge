@@ -12,7 +12,7 @@ val databaseModule = module {
     single {
         Room.databaseBuilder(
             get(),
-            AppDatabase::class.java, "database-name"
+            AppDatabase::class.java, "themoviedb"
         ).build()
     }
 
