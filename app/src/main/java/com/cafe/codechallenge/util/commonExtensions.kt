@@ -30,11 +30,12 @@ fun Context.isNetworkAvailable(): Boolean {
     return false
 }
 
-fun<T> MutableLiveData<T>.default(init: T): MutableLiveData<T> {
-    if(this.value == null)
-        this.value = init
+fun<T> MutableLiveData<List<T>>.postValues(list: List<T>) {
+    val tempValue = this.value ?: arrayListOf()
+    val mutableList = tempValue.toMutableList()
+    mutableList.addAll(list)
 
-    return this
+    this.postValue(mutableList)
 }
 
 fun<T> MutableLiveData<List<T>>.invalidate(): MutableLiveData<List<T>> {

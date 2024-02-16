@@ -28,7 +28,9 @@ class ConcatWithLoadingAdapter(private val adapter: BaseAdapter) {
     private val loadingAdapter = LoadingAdapter()
 
     fun concat(): ConcatAdapter {
-        return ConcatAdapter(adapter, loadingAdapter)
+        return ConcatAdapter(adapter, loadingAdapter).also {
+            showContent()
+        }
     }
 
     fun showLoading() {

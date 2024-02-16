@@ -4,8 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.cafe.codechallenge.data.model.*
 import com.cafe.codechallenge.presentation.common.util.Paginator
-import com.cafe.codechallenge.util.default
 import com.cafe.codechallenge.util.livedata.SingleLiveData
+import com.cafe.codechallenge.util.postValues
 import com.pixy.codebase.common.viewgroup.items.PageState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.FlowCollector
@@ -28,12 +28,7 @@ open class BaseViewModel: ViewModel() {
         if (value.results.isEmpty())
             emit(PageState.NoData)
 
-        liveData.default(arrayListOf()).also { liveData ->
-            liveData.value?.toMutableList()?.let {items ->
-                items.addAll(value.results)
-                liveData.postValue(items)
-            }
-        }
+        liveData.postValues(value.results)
     }
 
     inline fun <T> postValue(
